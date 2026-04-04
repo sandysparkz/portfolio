@@ -1,14 +1,14 @@
 "use client";
 
-import {
-  Code,
-  Globe,
-  MessageCircle,
-  GitBranch,
-  ArrowDown,
-  ChevronRight,
-  Cpu,
-} from "lucide-react";
+import { ArrowDown, ChevronRight, Cpu } from "lucide-react";
+import { FaGithub, FaLinkedin, FaDiscord, FaGitlab } from "react-icons/fa";
+
+const socials = [
+  { icon: FaLinkedin, href: "https://linkedin.com/in/yourprofile", label: "LinkedIn" },
+  { icon: FaGithub,   href: "https://github.com/yourusername",     label: "GitHub"   },
+  { icon: FaGitlab,   href: "https://gitlab.com/yourusername",     label: "GitLab"   },
+  { icon: FaDiscord,  href: "https://discord.com/users/yourid",    label: "Discord"  },
+];
 
 export default function Hero() {
   return (
@@ -16,101 +16,116 @@ export default function Hero() {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:64px_64px] dark:bg-[linear-gradient(rgba(59,130,246,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.05)_1px,transparent_1px)]" />
+      <div
+        aria-hidden="true"
+        className="absolute top-1/3 left-1/4 w-[40rem] h-[40rem] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(59,130,246,0.03) 0%, transparent 65%)" }}
+      />
 
-      {/* Gradient Orbs */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl animate-pulse-slow" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent-600/10 rounded-full blur-3xl animate-pulse-slow delay-1000" />
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 h-40 pointer-events-none"
+        style={{ background: "linear-gradient(to top, #070707, transparent)" }}
+      />
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-32">
-        <div className="max-w-3xl">
-          {/* Terminal-style intro */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-surface-dark-card border border-gray-200 dark:border-surface-dark-border rounded-full mb-8 animate-fade-in">
-            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            <span className="font-mono text-sm text-gray-600 dark:text-gray-400">
-              available for opportunities
-            </span>
-          </div>
+      <div className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24 sm:pt-32 sm:pb-32">
+        <div className="max-w-2xl">
 
-          {/* Name & Title */}
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight animate-slide-up">
-            <span className="text-gray-900 dark:text-white">Hi, I&apos;m </span>
-            <span className="text-accent-600 dark:text-accent-400">
-              [Your Name]
-            </span>
+          <p
+            className="font-terminal text-xs sm:text-sm text-gray-600 mb-5 animate-fade-in"
+            style={{ animationDelay: "0ms" }}
+          >
+            <span className="select-none text-gray-700">$ </span>
+            <span className="text-blue-400">whoami</span>
+          </p>
+
+          <h1
+            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.05] animate-slide-up text-white"
+            style={{ animationDelay: "80ms" }}
+          >
+            Hi, I&apos;m{" "}
+            <span className="text-white">[Your Name]</span>
           </h1>
 
-          <div className="mt-4 flex items-center gap-3 animate-slide-up">
-            <Cpu className="w-6 h-6 text-accent-500" />
-            <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 dark:text-gray-200">
+          <div
+            className="mt-4 flex items-center gap-2.5 animate-slide-up"
+            style={{ animationDelay: "160ms" }}
+          >
+            <Cpu className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400 flex-shrink-0" />
+            <h2 className="text-lg sm:text-xl font-semibold text-gray-400 tracking-tight">
               Embedded Software Engineer
             </h2>
           </div>
 
-          <p className="mt-6 text-lg sm:text-xl text-gray-500 dark:text-gray-400 leading-relaxed max-w-2xl animate-slide-up font-light">
-            Specializing in{" "}
+          <p
+            className="mt-5 text-base sm:text-lg text-gray-500 leading-relaxed animate-slide-up"
+            style={{ animationDelay: "220ms" }}
+          >
+            Specialising in{" "}
             <span className="inline-code">Zephyr RTOS</span>,{" "}
             <span className="inline-code">Embedded Linux</span>, and{" "}
-            <span className="inline-code">Low-Level C Programming</span>.
+            <span className="inline-code">Low-Level C</span>.
           </p>
 
-          {/* CTA Buttons */}
-          <div className="mt-10 flex flex-wrap gap-4 animate-slide-up">
+          <div
+            className="mt-9 flex flex-wrap items-center gap-3 animate-slide-up"
+            style={{ animationDelay: "300ms" }}
+          >
             <a href="/blog" className="btn-primary">
               Read the Blog
               <ChevronRight className="w-4 h-4" />
             </a>
             <a href="#contact" className="btn-secondary">
-              Contact Me
+              Get in Touch
             </a>
           </div>
 
-          {/* Social Icons */}
-          <div className="mt-12 flex items-center gap-4 animate-slide-up">
-            <span className="text-sm font-mono text-gray-400 dark:text-gray-500 mr-2">
+          <div
+            className="mt-10 flex items-center gap-2.5 animate-slide-up"
+            style={{ animationDelay: "380ms" }}
+          >
+            <span className="font-terminal text-[11px] text-gray-700 select-none mr-1">
               find_me $
             </span>
-            {[
-              {
-                icon: Globe,
-                href: "https://linkedin.com/in/yourprofile",
-                label: "LinkedIn",
-              },
-              {
-                icon: MessageCircle,
-                href: "https://discord.com/users/yourid",
-                label: "Discord",
-              },
-              {
-                icon: Code,
-                href: "https://github.com/yourusername",
-                label: "GitHub",
-              },
-              {
-                icon: GitBranch,
-                href: "https://gitlab.com/yourusername",
-                label: "GitLab",
-              },
-            ].map((social) => (
+            {socials.map((s) => (
               <a
-                key={social.label}
-                href={social.href}
+                key={s.label}
+                href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-lg bg-gray-100 dark:bg-surface-dark-card border border-gray-200 dark:border-surface-dark-border text-gray-500 dark:text-gray-400 hover:text-accent-600 dark:hover:text-accent-400 hover:border-accent-300 dark:hover:border-accent-700 transition-all duration-200"
-                aria-label={social.label}
+                aria-label={s.label}
+                className="p-2 sm:p-2.5 rounded-lg text-gray-500 border border-white/8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                style={{
+                  background: "rgba(255,255,255,0.03)",
+                  boxShadow: "0 0 0 rgba(59,130,246,0)",
+                  transition: "all 0.35s cubic-bezier(0.16,1,0.3,1)",
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background  = "rgba(59,130,246,0.1)";
+                  el.style.borderColor = "rgba(96,165,250,0.38)";
+                  el.style.color       = "rgb(147,197,253)";
+                  el.style.transform   = "translateY(-2px)";
+                  el.style.boxShadow   = "0 4px 18px rgba(59,130,246,0.18)";
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background  = "rgba(255,255,255,0.03)";
+                  el.style.borderColor = "rgba(255,255,255,0.08)";
+                  el.style.color       = "rgb(107,114,128)";
+                  el.style.transform   = "translateY(0)";
+                  el.style.boxShadow   = "0 0 0 rgba(59,130,246,0)";
+                }}
               >
-                <social.icon className="w-5 h-5" />
+                <s.icon className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
             ))}
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-          <span className="text-xs font-mono text-gray-400">scroll</span>
-          <ArrowDown className="w-4 h-4 text-gray-400" />
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-1 opacity-25">
+          <span className="font-terminal text-[10px] text-gray-500 uppercase tracking-widest">scroll</span>
+          <ArrowDown className="w-3.5 h-3.5 text-gray-500 animate-bounce" />
         </div>
       </div>
     </section>

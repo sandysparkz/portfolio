@@ -2,194 +2,280 @@
 
 import { useState } from "react";
 import {
-  Code2,
-  Cpu,
-  Radio,
-  Wrench,
-  GitBranch,
-  Layers,
+  Code2, Cpu, Radio, Wrench, Layers, GitBranch,
+  Bluetooth, Server, Terminal, Package, FileCode,
+  Cable, Wifi, Network, Bug, CircuitBoard, Key,
 } from "lucide-react";
+import { GLASS } from "./glassConfig";
+import SkillsGlobe from "./SkillsGlobe";
 
-const skillCategories = [
+type Level = "expert" | "proficient" | "familiar";
+interface Skill { name: string; level: Level; Icon?: React.FC<{ className?: string }>; }
+interface Category { id: string; Icon: React.ComponentType<{ className?: string }>; title: string; skills: Skill[]; }
+
+const categories: Category[] = [
   {
-    id: "languages",
-    icon: Code2,
-    title: "Core Languages & OS",
-    color: "blue",
+    id: "languages", Icon: Code2, title: "Languages & OS",
     skills: [
-      { name: "C Programming", level: 95 },
-      { name: "Zephyr RTOS", level: 90 },
-      { name: "Embedded Linux", level: 85 },
+      { name: "C / C++",        level: "expert",     Icon: FileCode },
+      { name: "Zephyr RTOS",    level: "expert",     Icon: Cpu      },
+      { name: "Embedded Linux", level: "proficient", Icon: Terminal },
+      { name: "POSIX",          level: "proficient", Icon: Terminal },
+      { name: "Python",         level: "familiar",   Icon: Code2    },
     ],
   },
   {
-    id: "system",
-    icon: Layers,
-    title: "System & Boot",
-    color: "purple",
+    id: "system", Icon: Layers, title: "System & Boot",
     skills: [
-      { name: "Yocto Project", level: 80 },
-      { name: "U-Boot", level: 75 },
+      { name: "Yocto Project", level: "proficient", Icon: Layers    },
+      { name: "U-Boot",        level: "proficient", Icon: Server    },
+      { name: "OpenEmbedded",  level: "familiar",   Icon: Layers    },
+      { name: "Linux Kernel",  level: "proficient", Icon: Server    },
+      { name: "Device Tree",   level: "proficient", Icon: GitBranch },
     ],
   },
   {
-    id: "protocols",
-    icon: Radio,
-    title: "Protocols & Interfaces",
-    color: "green",
+    id: "protocols", Icon: Radio, title: "Protocols",
     skills: [
-      { name: "BLE", level: 85 },
-      { name: "UART", level: 95 },
-      { name: "I2C", level: 90 },
-      { name: "CAN", level: 80 },
-      { name: "SPI", level: 90 },
-      { name: "LoRaWAN", level: 70 },
-      { name: "USB", level: 85 },
+      { name: "UART / USART",   level: "expert",     Icon: Cable        },
+      { name: "I2C",            level: "expert",     Icon: CircuitBoard },
+      { name: "SPI",            level: "expert",     Icon: CircuitBoard },
+      { name: "USB",            level: "proficient", Icon: Cable        },
+      { name: "BLE",            level: "proficient", Icon: Bluetooth    },
+      { name: "CAN / CAN-FD",   level: "proficient", Icon: Network      },
+      { name: "LoRaWAN",        level: "familiar",   Icon: Wifi         },
+      { name: "Ethernet / TCP", level: "familiar",   Icon: Network      },
     ],
   },
   {
-    id: "specializations",
-    icon: Cpu,
-    title: "Specializations",
-    color: "orange",
+    id: "zephyr", Icon: Cpu, title: "Zephyr Expertise",
     skills: [
-      { name: "Zephyr Driver Development", level: 90 },
-      { name: "Zephyr App Development", level: 92 },
-      { name: "Zephyr USB Subsystem", level: 85 },
-      { name: "Linux Driver Dev", level: 75 },
+      { name: "Zephyr Drivers",       level: "expert",     Icon: Cpu   },
+      { name: "Zephyr App Dev",        level: "expert",     Icon: Cpu   },
+      { name: "Kconfig / menuconfig",  level: "expert"                  },
+      { name: "West Build System",     level: "expert"                  },
+      { name: "Devicetree (DTS)",      level: "expert"                  },
+      { name: "Zephyr USB Stack",      level: "proficient", Icon: Cable },
     ],
   },
   {
-    id: "tools",
-    icon: Wrench,
-    title: "Tools & DevOps",
-    color: "cyan",
+    id: "tools", Icon: Wrench, title: "Tools & DevOps",
     skills: [
-      { name: "Git", level: 90 },
-      { name: "Docker", level: 75 },
+      { name: "Git",             level: "expert",     Icon: GitBranch },
+      { name: "Docker",          level: "proficient", Icon: Package   },
+      { name: "GDB / JTAG",      level: "proficient", Icon: Bug       },
+      { name: "CMake / Make",    level: "proficient", Icon: Wrench    },
+      { name: "CI / GH Actions", level: "familiar",   Icon: GitBranch },
     ],
   },
 ];
 
+function Badge({ level }: { level: Level }) {
+  if (level === "expert")
+    return (
+      <span className="prof-badge-expert">
+        <span className="w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0" style={{ boxShadow: "0 0 4px rgba(96,165,250,0.7)" }} />
+        Expert
+      </span>
+    );
+  if (level === "proficient")
+    return (
+      <span className="prof-badge-proficient">
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0" />
+        Proficient
+      </span>
+    );
+  return (
+    <span className="prof-badge-familiar">
+      <span className="w-1.5 h-1.5 rounded-full bg-gray-500 flex-shrink-0" />
+      Familiar
+    </span>
+  );
+}
+
 export default function Skills() {
-  const [activeCategory, setActiveCategory] = useState("languages");
+  const [activeId, setActiveId] = useState("languages");
+  const active = categories.find((c) => c.id === activeId)!;
+  const totalSkills = categories.reduce((n, c) => n + c.skills.length, 0);
 
   return (
-    <section id="skills" className="py-24">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Section Header */}
-        <div className="mb-16">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="h-px w-8 bg-accent-500" />
-            <span className="font-mono text-sm text-accent-600 dark:text-accent-400 uppercase tracking-wider">
-              Skills
-            </span>
+    <section id="skills" className="py-20 sm:py-28">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div className="mb-12 sm:mb-14">
+          <div className="section-label">
+            <div className="section-label-line" />
+            <span className="section-label-text">Skills</span>
           </div>
-          <h2 className="section-title">Skills & Technologies</h2>
-          <p className="section-subtitle">
-            The toolbox I use to bring embedded systems to life.
-          </p>
+          <h2 className="section-title">Skills &amp; Technologies</h2>
+          <p className="section-subtitle">The toolbox I reach for to bring embedded systems to life.</p>
         </div>
 
-        {/* Category Tabs */}
-        <div className="flex flex-wrap gap-2 mb-10">
-          {skillCategories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setActiveCategory(cat.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-lg font-mono text-sm transition-all duration-200 ${
-                activeCategory === cat.id
-                  ? "bg-accent-600 text-white shadow-lg shadow-accent-500/25"
-                  : "bg-gray-100 dark:bg-surface-dark-card border border-gray-200 dark:border-surface-dark-border text-gray-600 dark:text-gray-400 hover:border-accent-300 dark:hover:border-accent-700"
-              }`}
-            >
-              <cat.icon className="w-4 h-4" />
-              {cat.title}
-            </button>
-          ))}
+        {/* Category tabs */}
+        <div className="flex flex-wrap gap-2 mb-8 sm:mb-10">
+          {categories.map((cat) => {
+            const isActive = cat.id === activeId;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setActiveId(cat.id)}
+                aria-pressed={isActive}
+                className="flex items-center gap-2 px-3.5 py-2 rounded-lg font-mono text-xs sm:text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                style={{
+                  background: isActive ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.04)",
+                  color:      isActive ? "#0e0e0e" : "#6b7280",
+                  border:     isActive ? "1px solid rgba(255,255,255,0.9)" : "1px solid rgba(255,255,255,0.08)",
+                  backdropFilter: "blur(8px)",
+                  WebkitBackdropFilter: "blur(8px)",
+                  transition: "all 0.28s cubic-bezier(0.16,1,0.3,1)",
+                }}
+                onMouseEnter={(e) => {
+                  if (isActive) return;
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background  = "rgba(59,130,246,0.1)";
+                  el.style.borderColor = "rgba(96,165,250,0.35)";
+                  el.style.color       = "#93c5fd";
+                  el.style.boxShadow   = "0 2px 12px rgba(59,130,246,0.15)";
+                }}
+                onMouseLeave={(e) => {
+                  if (isActive) return;
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background  = "rgba(255,255,255,0.04)";
+                  el.style.borderColor = "rgba(255,255,255,0.08)";
+                  el.style.color       = "#6b7280";
+                  el.style.boxShadow   = "0 2px 12px rgba(59,130,246,0)";
+                }}
+              >
+                <cat.Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <span className="hidden sm:inline">{cat.title}</span>
+                <span className="sm:hidden">{cat.title.split(" ")[0]}</span>
+              </button>
+            );
+          })}
         </div>
 
-        {/* Skills Display */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Active Category Detail */}
-          <div className="card">
-            <div className="flex items-center gap-3 mb-6">
-              {(() => {
-                const active = skillCategories.find(
-                  (c) => c.id === activeCategory
-                );
-                if (!active) return null;
-                return (
-                  <>
-                    <div className="p-2 bg-accent-100 dark:bg-accent-900/30 rounded-lg">
-                      <active.icon className="w-5 h-5 text-accent-600 dark:text-accent-400" />
-                    </div>
-                    <h3 className="font-semibold text-lg">{active.title}</h3>
-                  </>
-                );
-              })()}
+        <div className="grid md:grid-cols-2 gap-5 lg:gap-6">
+
+          {/* Skill rows */}
+          <div>
+            <div className="flex items-center gap-3 mb-5 px-1">
+              <div className="p-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", backdropFilter: "blur(6px)" }}>
+                <active.Icon className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-sm sm:text-base text-white">{active.title}</h3>
+                <p className="font-terminal text-[11px] text-gray-600">{active.skills.length} skills</p>
+              </div>
             </div>
 
-            <div className="space-y-5">
-              {skillCategories
-                .find((c) => c.id === activeCategory)
-                ?.skills.map((skill) => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-mono text-sm text-gray-700 dark:text-gray-300">
-                        {skill.name}
+            <div className="space-y-2">
+              {active.skills.map((skill) => (
+                <div
+                  key={skill.name}
+                  className="group flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg"
+                  style={{
+                    ...GLASS,
+                    background:  "rgba(255,255,255,0.03)",
+                    border:      "1px solid rgba(255,255,255,0.06)",
+                    transition:  "all 0.25s cubic-bezier(0.16,1,0.3,1)",
+                  }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.background  = "rgba(255,255,255,0.06)";
+                    el.style.borderColor = "rgba(255,255,255,0.1)";
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.background  = "rgba(255,255,255,0.03)";
+                    el.style.borderColor = "rgba(255,255,255,0.06)";
+                  }}
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    {skill.Icon ? (
+                      <skill.Icon className="w-3.5 h-3.5 text-gray-600 group-hover:text-gray-400 flex-shrink-0 transition-colors duration-200" />
+                    ) : (
+                      <span className="w-3.5 h-3.5 flex items-center justify-center flex-shrink-0">
+                        <span className="w-1 h-1 rounded-full bg-gray-700 group-hover:bg-gray-500 transition-colors duration-200" />
                       </span>
-                      <span className="font-mono text-xs text-gray-400">
-                        {skill.level}%
-                      </span>
-                    </div>
-                    <div className="h-2 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-accent-500 to-accent-600 rounded-full transition-all duration-1000 ease-out"
-                        style={{ width: `${skill.level}%` }}
-                      />
-                    </div>
+                    )}
+                    <span className="font-mono text-xs sm:text-sm text-gray-400 group-hover:text-gray-200 truncate transition-colors duration-200">
+                      {skill.name}
+                    </span>
+                  </div>
+                  <Badge level={skill.level} />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right column */}
+          <div className="space-y-4">
+
+            {/* Proficiency Key */}
+            <div
+              className="rounded-xl p-5"
+              style={{
+                ...GLASS,
+                background: "rgba(255,255,255,0.025)",
+                border: "1px solid rgba(255,255,255,0.07)",
+              }}
+            >
+              <h3 className="font-semibold text-sm text-white mb-4 flex items-center gap-2">
+                <Key className="w-3.5 h-3.5 text-gray-500" />
+                Proficiency Key
+              </h3>
+              <div className="space-y-3">
+                {[
+                  {
+                    badge: <span className="prof-badge-expert"><span className="w-1.5 h-1.5 rounded-full bg-blue-400" style={{ boxShadow: "0 0 4px rgba(96,165,250,0.7)" }} />Expert</span>,
+                    desc:  "Production-level, deep internals knowledge",
+                  },
+                  {
+                    badge: <span className="prof-badge-proficient"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />Proficient</span>,
+                    desc:  "Solid working knowledge, shipped projects",
+                  },
+                  {
+                    badge: <span className="prof-badge-familiar"><span className="w-1.5 h-1.5 rounded-full bg-gray-500" />Familiar</span>,
+                    desc:  "Hands-on experience, actively developing",
+                  },
+                ].map((row, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    {row.badge}
+                    <p className="text-xs text-gray-600 leading-snug pt-0.5">{row.desc}</p>
                   </div>
                 ))}
-            </div>
-          </div>
-
-          {/* All Skills Grid */}
-          <div className="card">
-            <h3 className="font-semibold text-lg mb-6 flex items-center gap-2">
-              <GitBranch className="w-5 h-5 text-accent-500" />
-              Full Stack Overview
-            </h3>
-
-            <div className="flex flex-wrap gap-2">
-              {skillCategories.flatMap((cat) =>
-                cat.skills.map((skill) => (
-                  <span
-                    key={`${cat.id}-${skill.name}`}
-                    className="skill-badge"
-                  >
-                    {skill.name}
-                  </span>
-                ))
-              )}
+              </div>
             </div>
 
-            {/* Terminal-style decoration */}
-            <div className="mt-8 p-4 bg-gray-950 rounded-lg font-mono text-xs">
-              <div className="text-gray-500">
-                <span className="text-green-400">$</span> cat /proc/skills |
-                grep -c &quot;proficient&quot;
-              </div>
-              <div className="text-accent-400 mt-1">
-                {skillCategories.reduce(
-                  (acc, cat) => acc + cat.skills.length,
-                  0
-                )}{" "}
-                technologies loaded
-              </div>
-              <div className="text-gray-500 mt-1">
+            {/* Skills Globe */}
+            <div
+              className="rounded-xl py-4 px-2"
+              style={{
+                ...GLASS,
+                background: "rgba(255,255,255,0.025)",
+                border: "1px solid rgba(255,255,255,0.07)",
+              }}
+            >
+              <SkillsGlobe radius={140} />
+            </div>
+
+            {/* Terminal counter */}
+            <div
+              className="rounded-xl p-4 font-terminal text-xs"
+              style={{
+                ...GLASS,
+                background: "rgba(7,10,25,0.3)",
+                border: "1px solid rgba(59,130,246,0.2)",
+              }}
+            >
+              <div className="text-gray-600">
                 <span className="text-green-400">$</span>{" "}
-                <span className="animate-blink">▊</span>
+                cat /proc/skills | wc -l
+              </div>
+              <div className="mt-1.5 text-blue-400">{totalSkills} technologies indexed</div>
+              <div className="mt-1.5 text-gray-600">
+                <span className="text-green-400">$</span>{" "}
+                <span className="animate-blink text-gray-500">&#9610;</span>
               </div>
             </div>
           </div>

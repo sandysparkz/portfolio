@@ -3,85 +3,144 @@
 import Link from "next/link";
 import { Terminal, Heart, Code, Globe, GitBranch, MessageCircle } from "lucide-react";
 
+const navLinks = [
+  { label: "Home",     href: "/"           },
+  { label: "About",    href: "/#about"     },
+  { label: "Skills",   href: "/#skills"    },
+  { label: "Projects", href: "/#experience"},
+  { label: "Blog",     href: "/blog"       },
+  { label: "Contact",  href: "/#contact"   },
+];
+
+const socials = [
+  { icon: Code,          href: "https://github.com/yourusername",     label: "GitHub"   },
+  { icon: Globe,         href: "https://linkedin.com/in/yourprofile", label: "LinkedIn" },
+  { icon: GitBranch,     href: "https://gitlab.com/yourusername",     label: "GitLab"   },
+  { icon: MessageCircle, href: "#",                                   label: "Discord"  },
+];
+
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-200 dark:border-surface-dark-border bg-white dark:bg-surface-dark">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
-        <div className="grid sm:grid-cols-3 gap-8">
-          {/* Logo & Description */}
+    <footer
+      style={{
+        /* Translucent blue-tinted glass — consistent with rest of site */
+        background:     "rgba(7, 10, 25, 0.55)",
+        backdropFilter: "blur(16px) saturate(1.4)",
+        WebkitBackdropFilter: "blur(16px) saturate(1.4)",
+        borderTop:      "1px solid rgba(59, 130, 246, 0.15)",
+      }}
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+
+          {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-7 h-7 bg-accent-600 rounded-lg flex items-center justify-center">
+            <Link href="/" className="flex items-center gap-2 mb-4 group w-fit" aria-label="Home">
+              <div
+                className="w-7 h-7 rounded-lg flex items-center justify-center"
+                style={{
+                  background: "rgba(37,99,235,0.85)",
+                  boxShadow:  "0 0 14px rgba(59,130,246,0.3)",
+                  transition: "box-shadow 0.25s ease",
+                }}
+              >
                 <Terminal className="w-3.5 h-3.5 text-white" />
               </div>
-              <span className="font-mono font-bold">
-                <span className="text-accent-500">~/</span>dev
+              <span className="font-mono font-bold text-white">
+                <span className="text-blue-400">~/</span>dev
               </span>
-            </div>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Embedded Software Engineer building reliable firmware and
-              low-level systems.
+            </Link>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              Embedded Software Engineer building reliable firmware and low-level systems.
             </p>
           </div>
 
-          {/* Quick Links */}
+          {/* Navigation */}
           <div>
-            <h4 className="font-mono text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3">
+            <h4 className="font-terminal text-[11px] uppercase tracking-widest text-gray-700 mb-4">
               Navigation
             </h4>
-            <div className="space-y-2">
-              {["Home", "About", "Skills", "Experience", "Blog", "Contact"].map(
-                (link) => (
+            <ul className="space-y-2">
+              {navLinks.map((link) => (
+                <li key={link.label}>
                   <Link
-                    key={link}
-                    href={
-                      link === "Blog"
-                        ? "/blog"
-                        : `/#${link.toLowerCase()}`
-                    }
-                    className="block text-sm text-gray-600 dark:text-gray-400 hover:text-accent-600 dark:hover:text-accent-400 transition-colors"
+                    href={link.href}
+                    className="text-sm text-gray-600 hover:text-blue-400 transition-colors duration-200 focus-visible:outline-none focus-visible:text-blue-400"
                   >
-                    {link}
+                    {link.label}
                   </Link>
-                )
-              )}
-            </div>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Social */}
+          {/* Connect */}
           <div>
-            <h4 className="font-mono text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3">
+            <h4 className="font-terminal text-[11px] uppercase tracking-widest text-gray-700 mb-4">
               Connect
             </h4>
-            <div className="flex gap-2">
-              {[
-                { icon: Code, href: "https://github.com/yourusername" },
-                { icon: Globe, href: "https://linkedin.com/in/yourprofile" },
-                { icon: GitBranch, href: "https://gitlab.com/yourusername" },
-                { icon: MessageCircle, href: "#" },
-              ].map((social, i) => (
+            <div className="flex flex-wrap gap-2">
+              {socials.map((s) => (
                 <a
-                  key={i}
-                  href={social.href}
+                  key={s.label}
+                  href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-gray-100 dark:bg-surface-dark-card border border-gray-200 dark:border-surface-dark-border text-gray-500 dark:text-gray-400 hover:text-accent-600 dark:hover:text-accent-400 hover:border-accent-300 dark:hover:border-accent-700 transition-all"
+                  aria-label={s.label}
+                  className="p-2 rounded-lg text-gray-600 hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                  style={{
+                    background:  "rgba(255,255,255,0.03)",
+                    border:      "1px solid rgba(59,130,246,0.1)",
+                    transition:  "all 0.25s cubic-bezier(0.16,1,0.3,1)",
+                  }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.background  = "rgba(59,130,246,0.09)";
+                    el.style.borderColor = "rgba(59,130,246,0.32)";
+                    el.style.boxShadow   = "0 0 12px rgba(59,130,246,0.15)";
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.background  = "rgba(255,255,255,0.03)";
+                    el.style.borderColor = "rgba(59,130,246,0.1)";
+                    el.style.boxShadow   = "none";
+                  }}
                 >
-                  <social.icon className="w-4 h-4" />
+                  <s.icon className="w-4 h-4" />
                 </a>
               ))}
+            </div>
+
+            {/* uname — Share Tech Mono (font-terminal) */}
+            <div className="mt-6 font-terminal text-[11px] text-gray-700 leading-relaxed">
+              <span className="text-green-500">$</span>{" "}
+              <span className="text-gray-600">uname -a</span>
+              <br />
+              <span className="pl-2 text-blue-800">Embedded · Linux · Zephyr</span>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-10 pt-6 border-t border-gray-200 dark:border-surface-dark-border flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="text-xs text-gray-400 font-mono">
-            &copy; {new Date().getFullYear()} [Your Name]. All rights reserved.
+        {/* Bottom bar */}
+        <div
+          className="mt-10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3"
+          style={{ borderTop: "1px solid rgba(59,130,246,0.08)" }}
+        >
+          {/* Copyright — Share Tech Mono (font-terminal) */}
+          <p className="font-terminal text-[11px] text-gray-700">
+            © {new Date().getFullYear()} [Your Name]. All rights reserved.
           </p>
-          <p className="text-xs text-gray-400 flex items-center gap-1">
-            Built with <Heart className="w-3 h-3 text-red-400" /> and lots of
-            <span className="inline-code text-[10px]">printf()</span> debugging
+          <p className="font-terminal text-[11px] text-gray-700 flex items-center gap-1.5">
+            Built with
+            <Heart className="w-3 h-3 text-red-700/70" />
+            and lots of
+            <span
+              className="text-[10px] text-blue-500/60 px-1 py-0.5 rounded"
+              style={{ background: "rgba(59,130,246,0.08)", border: "1px solid rgba(59,130,246,0.15)" }}
+            >
+              printf()
+            </span>
+            debugging
           </p>
         </div>
       </div>

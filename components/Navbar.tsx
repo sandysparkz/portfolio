@@ -1,137 +1,198 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useTheme } from "next-themes";
+import { useState, useEffect, useCallback } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import {
-  Sun,
-  Moon,
-  Menu,
-  X,
-  Terminal,
-  Monitor,
-} from "lucide-react";
+import { Terminal, Menu, X } from "lucide-react";
 
 const navLinks = [
-  { name: "Home", href: "/#home" },
-  { name: "About", href: "/#about" },
-  { name: "Skills", href: "/#skills" },
-  { name: "Experience", href: "/#experience" },
-  { name: "Blog", href: "/blog" },
-  { name: "Contact", href: "/#contact" },
+  { name: "Home",     href: "/#home",       section: "home"       },
+  { name: "About",    href: "/#about",      section: "about"      },
+  { name: "Skills",   href: "/#skills",     section: "skills"     },
+  { name: "Projects", href: "/#experience", section: "experience" },
+  { name: "Blog",     href: "/blog",         section: null         },
+  { name: "Contact",  href: "/#contact",    section: "contact"    },
 ];
 
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+const SECTIONS = navLinks.map((l) => l.section).filter(Boolean) as string[];
 
+export default function Navbar() {
+  const [isOpen,        setIsOpen]        = useState(false);
+  const [scrolled,      setScrolled]      = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("home");
+  const pathname                          = usePathname();
+  const router                            = useRouter();
+
+  /* ── Scroll shadow ── */
   useEffect(() => {
-    setMounted(true);
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const handler = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
   }, []);
+
+  /* ── IntersectionObserver — track active section ── */
+  useEffect(() => {
+    if (pathname !== "/") return;
+    const obs: IntersectionObserver[] = [];
+    SECTIONS.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const o = new IntersectionObserver(
+        ([e]) => { if (e.isIntersecting) setActiveSection(id); },
+        { threshold: 0.25, rootMargin: "-10% 0px -10% 0px" }
+      );
+      o.observe(el);
+      obs.push(o);
+    });
+    return () => obs.forEach((o) => o.disconnect());
+  }, [pathname]);
+
+  /* ── Smooth scroll handler — works with basePath + static export ── */
+  const handleNavClick = useCallback(
+    (e: React.MouseEvent, link: (typeof navLinks)[number]) => {
+      if (!link.section) return; // Blog — let Next.js navigate normally
+
+      if (pathname === "/") {
+        // Already on home page — just scroll
+        e.preventDefault();
+        const el = document.getElementById(link.section);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        // On a different page — navigate home then scroll
+        e.preventDefault();
+        router.push("/");
+        // Give time for page to mount, then scroll
+        setTimeout(() => {
+          const el = document.getElementById(link.section!);
+          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 350);
+      }
+    },
+    [pathname, router]
+  );
+
+  const isActive = useCallback(
+    (link: (typeof navLinks)[number]) => {
+      if (link.href === "/blog") return pathname.startsWith("/blog");
+      if (pathname.startsWith("/blog")) return false;
+      return link.section === activeSection;
+    },
+    [pathname, activeSection]
+  );
+
+  useEffect(() => { setIsOpen(false); }, [pathname]);
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/80 dark:bg-surface-dark/80 backdrop-blur-xl shadow-sm border-b border-gray-200/50 dark:border-surface-dark-border/50"
-          : "bg-transparent"
-      }`}
+      style={{
+        transition:
+          "background 0.4s cubic-bezier(0.16,1,0.3,1), border-color 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s cubic-bezier(0.16,1,0.3,1)",
+        background: scrolled ? "rgba(7,7,7,0.78)" : "transparent",
+        backdropFilter: scrolled ? "blur(22px) saturate(1.6)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(22px) saturate(1.6)" : "none",
+        borderBottom: scrolled ? "1px solid rgba(255,255,255,0.05)" : "1px solid transparent",
+        boxShadow: scrolled ? "0 1px 0 rgba(0,0,0,0.6)" : "none",
+      }}
+      className="fixed top-0 inset-x-0 z-50"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 group"
-          >
-            <div className="w-8 h-8 bg-accent-600 rounded-lg flex items-center justify-center group-hover:bg-accent-500 transition-colors">
-              <Terminal className="w-4 h-4 text-white" />
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 sm:h-16">
+
+          {/* ── Brand — far left ─────────────────────────── */}
+          <Link href="/" className="flex items-center gap-2 group flex-shrink-0" aria-label="Home">
+            <div
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center"
+              style={{
+                background: "rgba(37,99,235,0.85)",
+                boxShadow: "0 0 16px rgba(59,130,246,0.35)",
+                transition: "background 0.25s ease, box-shadow 0.25s ease",
+              }}
+            >
+              <Terminal className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
             </div>
-            <span className="font-mono font-bold text-lg text-gray-900 dark:text-white">
-              <span className="text-accent-500">~/</span>dev
+            <span className="font-mono font-bold text-base sm:text-lg text-white select-none">
+              <span className="text-blue-400">~/</span>dev
             </span>
           </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-accent-600 dark:hover:text-accent-400 rounded-lg hover:bg-gray-100 dark:hover:bg-surface-dark-card transition-all duration-200"
-              >
-                {link.name}
-              </Link>
-            ))}
-
-            {/* Theme Toggle */}
-            {mounted && (
-              <button
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="ml-2 p-2 rounded-lg bg-gray-100 dark:bg-surface-dark-card border border-gray-200 dark:border-surface-dark-border hover:border-accent-300 dark:hover:border-accent-700 transition-all duration-200"
-                aria-label="Toggle theme"
-              >
-                {theme === "dark" ? (
-                  <Sun className="w-4 h-4 text-yellow-500" />
-                ) : (
-                  <Moon className="w-4 h-4 text-gray-600" />
-                )}
-              </button>
-            )}
+          {/* ── Desktop nav — far right ───────────────────── */}
+          <div className="hidden md:flex items-center gap-0.5">
+            {navLinks.map((link) => {
+              const active = isActive(link);
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  aria-current={active ? "page" : undefined}
+                  onClick={(e) => handleNavClick(e, link)}
+                  className={active ? "nav-link-active" : "nav-link"}
+                >
+                  {link.name}
+                  {/* Glowing blue dot for active page */}
+                  {active && (
+                    <span
+                      className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-blue-400"
+                      style={{ boxShadow: "0 0 6px rgba(96,165,250,0.9)" }}
+                    />
+                  )}
+                </a>
+              );
+            })}
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center gap-2 md:hidden">
-            {mounted && (
-              <button
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="p-2 rounded-lg bg-gray-100 dark:bg-surface-dark-card border border-gray-200 dark:border-surface-dark-border transition-all"
-                aria-label="Toggle theme"
-              >
-                {theme === "dark" ? (
-                  <Sun className="w-4 h-4 text-yellow-500" />
-                ) : (
-                  <Moon className="w-4 h-4 text-gray-600" />
-                )}
-              </button>
-            )}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-surface-dark-card border border-gray-200 dark:border-surface-dark-border transition-all"
-              aria-label="Toggle menu"
-            >
-              {isOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
-                <Menu className="w-5 h-5" />
-              )}
-            </button>
-          </div>
+          {/* ── Mobile hamburger ──────────────────────────── */}
+          <button
+            onClick={() => setIsOpen((o) => !o)}
+            aria-label="Toggle menu"
+            aria-expanded={isOpen}
+            className="md:hidden p-2 rounded-lg text-gray-400 hover:text-white border border-white/8 hover:border-white/15 transition-all duration-200"
+            style={{ background: "rgba(255,255,255,0.04)" }}
+          >
+            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* ── Mobile drawer ───────────────────────────────────── */}
       <div
-        className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
-          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
+        style={{
+          maxHeight: isOpen ? "22rem" : "0",
+          opacity: isOpen ? 1 : 0,
+          overflow: "hidden",
+          transition:
+            "max-height 0.38s cubic-bezier(0.16,1,0.3,1), opacity 0.25s ease",
+          background: "rgba(7,7,7,0.94)",
+          backdropFilter: "blur(22px)",
+          WebkitBackdropFilter: "blur(22px)",
+          borderTop: "1px solid rgba(255,255,255,0.05)",
+        }}
       >
-        <div className="px-4 py-3 bg-white/95 dark:bg-surface-dark/95 backdrop-blur-xl border-t border-gray-200/50 dark:border-surface-dark-border/50 space-y-1">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              onClick={() => setIsOpen(false)}
-              className="block px-4 py-2.5 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-accent-600 dark:hover:text-accent-400 rounded-lg hover:bg-gray-100 dark:hover:bg-surface-dark-card transition-all"
-            >
-              {link.name}
-            </Link>
-          ))}
+        <div className="px-4 py-3 space-y-0.5">
+          {navLinks.map((link) => {
+            const active = isActive(link);
+            return (
+              <a
+                key={link.name}
+                href={link.href}
+                aria-current={active ? "page" : undefined}
+                onClick={(e) => { handleNavClick(e, link); setIsOpen(false); }}
+                className={`flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  active
+                    ? "text-white"
+                    : "text-gray-500 hover:text-white"
+                }`}
+                style={{ background: active ? "rgba(255,255,255,0.07)" : undefined }}
+              >
+                {active && (
+                  <span
+                    className="w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0"
+                    style={{ boxShadow: "0 0 6px rgba(96,165,250,0.8)" }}
+                  />
+                )}
+                {link.name}
+              </a>
+            );
+          })}
         </div>
       </div>
     </nav>

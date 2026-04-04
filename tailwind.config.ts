@@ -9,9 +9,13 @@ const config: Config = {
   darkMode: "class",
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Inter", "system-ui", "sans-serif"],
+        mono: ["JetBrains Mono", "Fira Code", "monospace"],
+      },
       colors: {
         accent: {
-          50: "#eff6ff",
+          50:  "#eff6ff",
           100: "#dbeafe",
           200: "#bfdbfe",
           300: "#93c5fd",
@@ -23,41 +27,42 @@ const config: Config = {
           900: "#1e3a8a",
         },
         surface: {
-          light: "#ffffff",
-          "light-alt": "#f8fafc",
-          "light-card": "#f1f5f9",
-          dark: "#0a0a0a",
-          "dark-alt": "#111111",
-          "dark-card": "#1a1a1a",
-          "dark-border": "#2a2a2a",
+          dark:        "#080808",
+          "dark-card": "#101010",
+          "dark-alt":  "#141414",
+          "dark-border":"#242424",
         },
       },
-      fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        mono: ["JetBrains Mono", "Fira Code", "monospace"],
-      },
       animation: {
-        "fade-in": "fadeIn 0.6s ease-out",
-        "slide-up": "slideUp 0.6s ease-out",
-        "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-        blink: "blink 1s step-end infinite",
+        "fade-in":    "fadeIn 0.6s ease-out both",
+        "slide-up":   "slideUp 0.6s ease-out both",
+        "pulse-slow": "pulseSlow 3s ease-in-out infinite",
+        blink:        "blink 1s step-end infinite",
       },
       keyframes: {
         fadeIn: {
-          "0%": { opacity: "0" },
+          "0%":   { opacity: "0" },
           "100%": { opacity: "1" },
         },
         slideUp: {
-          "0%": { opacity: "0", transform: "translateY(30px)" },
+          "0%":   { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        pulseSlow: {
+          "0%, 100%": { opacity: "0.4" },
+          "50%":      { opacity: "0.7" },
         },
         blink: {
           "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0" },
+          "50%":      { opacity: "0" },
         },
+      },
+      transitionTimingFunction: {
+        smooth: "cubic-bezier(0.4, 0, 0.2, 1)",
       },
     },
   },
   plugins: [],
 };
+
 export default config;
