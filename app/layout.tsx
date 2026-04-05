@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import TronGrid from "@/components/TronGrid";
 
 export const metadata: Metadata = {
-  title: "[Your Name] — Embedded Software Engineer",
+  title: "$ whoami",
   description:
     "Portfolio and blog of an Embedded Software Engineer specialising in Zephyr RTOS, Embedded Linux, and low-level C programming.",
   keywords: [
@@ -19,6 +19,9 @@ export const metadata: Metadata = {
     "Firmware",
     "RTOS",
   ],
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

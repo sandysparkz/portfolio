@@ -17,11 +17,12 @@ const categories: Category[] = [
   {
     id: "languages", Icon: Code2, title: "Languages & OS",
     skills: [
-      { name: "C / C++",        level: "expert",     Icon: FileCode },
+      { name: "C",              level: "expert",     Icon: FileCode },
       { name: "Zephyr RTOS",    level: "expert",     Icon: Cpu      },
       { name: "Embedded Linux", level: "proficient", Icon: Terminal },
-      { name: "POSIX",          level: "proficient", Icon: Terminal },
       { name: "Python",         level: "familiar",   Icon: Code2    },
+      { name: "C++",            level: "familiar",   Icon: FileCode },
+      { name: "POSIX",          level: "familiar",   Icon: Terminal },
     ],
   },
   {
@@ -45,17 +46,19 @@ const categories: Category[] = [
       { name: "CAN / CAN-FD",   level: "proficient", Icon: Network      },
       { name: "LoRaWAN",        level: "familiar",   Icon: Wifi         },
       { name: "Ethernet / TCP", level: "familiar",   Icon: Network      },
+      { name: "Modbus",         level: "familiar",   Icon: Network      },
     ],
   },
   {
     id: "zephyr", Icon: Cpu, title: "Zephyr Expertise",
     skills: [
-      { name: "Zephyr Drivers",       level: "expert",     Icon: Cpu   },
-      { name: "Zephyr App Dev",        level: "expert",     Icon: Cpu   },
-      { name: "Kconfig / menuconfig",  level: "expert"                  },
-      { name: "West Build System",     level: "expert"                  },
-      { name: "Devicetree (DTS)",      level: "expert"                  },
-      { name: "Zephyr USB Stack",      level: "proficient", Icon: Cable },
+      { name: "Zephyr Drivers",           level: "expert",     Icon: Cpu      },
+      { name: "Zephyr application development", level: "expert", Icon: Cpu    },
+      { name: "Kconfig / menuconfig",     level: "expert"                     },
+      { name: "West Build System",        level: "expert"                     },
+      { name: "Devicetree (DTS)",         level: "expert"                     },
+      { name: "Zephyr USB Stack",         level: "proficient", Icon: Cable    },
+      { name: "Zephyr BLE Stack",         level: "proficient", Icon: Bluetooth},
     ],
   },
   {
@@ -96,7 +99,6 @@ function Badge({ level }: { level: Level }) {
 export default function Skills() {
   const [activeId, setActiveId] = useState("languages");
   const active = categories.find((c) => c.id === activeId)!;
-  const totalSkills = categories.reduce((n, c) => n + c.skills.length, 0);
 
   return (
     <section id="skills" className="py-20 sm:py-28">
@@ -129,22 +131,6 @@ export default function Skills() {
                   WebkitBackdropFilter: "blur(8px)",
                   transition: "all 0.28s cubic-bezier(0.16,1,0.3,1)",
                 }}
-                onMouseEnter={(e) => {
-                  if (isActive) return;
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.background  = "rgba(59,130,246,0.1)";
-                  el.style.borderColor = "rgba(96,165,250,0.35)";
-                  el.style.color       = "#93c5fd";
-                  el.style.boxShadow   = "0 2px 12px rgba(59,130,246,0.15)";
-                }}
-                onMouseLeave={(e) => {
-                  if (isActive) return;
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.background  = "rgba(255,255,255,0.04)";
-                  el.style.borderColor = "rgba(255,255,255,0.08)";
-                  el.style.color       = "#6b7280";
-                  el.style.boxShadow   = "0 2px 12px rgba(59,130,246,0)";
-                }}
               >
                 <cat.Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 <span className="hidden sm:inline">{cat.title}</span>
@@ -156,7 +142,7 @@ export default function Skills() {
 
         <div className="grid md:grid-cols-2 gap-5 lg:gap-6">
 
-          {/* Skill rows */}
+          {/* Frameless skill rows */}
           <div>
             <div className="flex items-center gap-3 mb-5 px-1">
               <div className="p-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", backdropFilter: "blur(6px)" }}>
@@ -174,10 +160,11 @@ export default function Skills() {
                   key={skill.name}
                   className="group flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg"
                   style={{
-                    ...GLASS,
-                    background:  "rgba(255,255,255,0.03)",
-                    border:      "1px solid rgba(255,255,255,0.06)",
-                    transition:  "all 0.25s cubic-bezier(0.16,1,0.3,1)",
+                    background:           "rgba(255,255,255,0.03)",
+                    border:               "1px solid rgba(255,255,255,0.06)",
+                    backdropFilter:       "blur(10px) saturate(1.3)",
+                    WebkitBackdropFilter: "blur(10px) saturate(1.3)",
+                    transition:           "all 0.25s cubic-bezier(0.16,1,0.3,1)",
                   }}
                   onMouseEnter={(e) => {
                     const el = e.currentTarget as HTMLElement;
@@ -259,20 +246,23 @@ export default function Skills() {
               <SkillsGlobe radius={140} />
             </div>
 
-            {/* Terminal counter */}
+            {/* Terminal counter — creative output */}
             <div
               className="rounded-xl p-4 font-terminal text-xs"
               style={{
                 ...GLASS,
-                background: "rgba(7,10,25,0.3)",
-                border: "1px solid rgba(59,130,246,0.2)",
+                background: "rgba(7,10,25,0.55)",
+                border: "1px solid rgba(59,130,246,0.18)",
               }}
             >
               <div className="text-gray-600">
                 <span className="text-green-400">$</span>{" "}
                 cat /proc/skills | wc -l
               </div>
-              <div className="mt-1.5 text-blue-400">{totalSkills} technologies indexed</div>
+              <div className="mt-1.5 space-y-0.5">
+                <div className="text-emerald-400">Compilation successful.</div>
+                <div className="text-blue-400/70 text-[10px]">All modules resolved. Stack ready.</div>
+              </div>
               <div className="mt-1.5 text-gray-600">
                 <span className="text-green-400">$</span>{" "}
                 <span className="animate-blink text-gray-500">&#9610;</span>

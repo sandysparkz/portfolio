@@ -13,17 +13,16 @@ const navLinks = [
 ];
 
 const socials = [
-  { icon: Code,          href: "https://github.com/yourusername",     label: "GitHub"   },
-  { icon: Globe,         href: "https://linkedin.com/in/yourprofile", label: "LinkedIn" },
-  { icon: GitBranch,     href: "https://gitlab.com/yourusername",     label: "GitLab"   },
-  { icon: MessageCircle, href: "#",                                   label: "Discord"  },
+  { icon: Code,          href: "https://github.com/sandys",              label: "GitHub"   },
+  { icon: Globe,         href: "https://linkedin.com/in/yourprofile",    label: "LinkedIn" },
+  { icon: GitBranch,     href: "https://gitlab.com/yourusername",        label: "GitLab"   },
+  { icon: MessageCircle, href: "#",                                      label: "Discord"  },
 ];
 
 export default function Footer() {
   return (
     <footer
       style={{
-        /* Translucent blue-tinted glass — consistent with rest of site */
         background:     "rgba(7, 10, 25, 0.55)",
         backdropFilter: "blur(16px) saturate(1.4)",
         WebkitBackdropFilter: "blur(16px) saturate(1.4)",
@@ -55,9 +54,9 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Navigation */}
+          {/* Navigation — Inter/body font, not terminal */}
           <div>
-            <h4 className="font-terminal text-[11px] uppercase tracking-widest text-gray-700 mb-4">
+            <h4 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">
               Navigation
             </h4>
             <ul className="space-y-2">
@@ -74,9 +73,9 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Connect */}
+          {/* Connect — Inter/body font header */}
           <div>
-            <h4 className="font-terminal text-[11px] uppercase tracking-widest text-gray-700 mb-4">
+            <h4 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">
               Connect
             </h4>
             <div className="flex flex-wrap gap-2">
@@ -111,12 +110,18 @@ export default function Footer() {
               ))}
             </div>
 
-            {/* uname — Share Tech Mono (font-terminal) */}
+            {/* uname block — Share Tech Mono (terminal), with accent highlights */}
             <div className="mt-6 font-terminal text-[11px] text-gray-700 leading-relaxed">
               <span className="text-green-500">$</span>{" "}
               <span className="text-gray-600">uname -a</span>
               <br />
-              <span className="pl-2 text-blue-800">Embedded · Linux · Zephyr</span>
+              <span className="pl-2">
+                <span className="text-blue-700">Embedded</span>
+                <span className="text-gray-700"> · </span>
+                <span className="text-emerald-700">Linux</span>
+                <span className="text-gray-700"> · </span>
+                <span className="text-blue-700">Zephyr</span>
+              </span>
             </div>
           </div>
         </div>
@@ -126,21 +131,26 @@ export default function Footer() {
           className="mt-10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3"
           style={{ borderTop: "1px solid rgba(59,130,246,0.08)" }}
         >
-          {/* Copyright — Share Tech Mono (font-terminal) */}
-          <p className="font-terminal text-[11px] text-gray-700">
-            © {new Date().getFullYear()} [Your Name]. All rights reserved.
+          {/* Copyright — Inter/body font, distinct teal color */}
+          <p className="text-[11px] text-teal-700/60 tracking-wide">
+            &copy; {new Date().getFullYear()} Sandy. All rights reserved.
           </p>
-          <p className="font-terminal text-[11px] text-gray-700 flex items-center gap-1.5">
+
+          {/* Built with — Inter body, printf() accented */}
+          <p className="text-[11px] text-gray-700 flex items-center gap-1.5">
             Built with
             <Heart className="w-3 h-3 text-red-700/70" />
-            and lots of
+            and lots of{" "}
             <span
-              className="text-[10px] text-blue-500/60 px-1 py-0.5 rounded"
-              style={{ background: "rgba(59,130,246,0.08)", border: "1px solid rgba(59,130,246,0.15)" }}
+              className="font-terminal text-[10px] text-emerald-400/80 px-1 py-0.5 rounded"
+              style={{
+                background: "rgba(52,211,153,0.07)",
+                border: "1px solid rgba(52,211,153,0.2)",
+              }}
             >
               printf()
             </span>
-            debugging
+            <span className="text-blue-400/60">debugging</span>
           </p>
         </div>
       </div>

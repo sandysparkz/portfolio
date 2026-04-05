@@ -12,7 +12,7 @@ const highlights = [
   {
     icon: Code2,
     title: "Low-Level Craft",
-    desc: "C, bare-metal, POSIX. Deterministic code with zero tolerance for undefined behaviour.",
+    desc: "C, bare-metal. Deterministic code with zero tolerance for undefined behaviour.",
   },
   {
     icon: Zap,
@@ -32,7 +32,7 @@ const highlights = [
   {
     icon: HardDrive,
     title: "Memory Obsessed",
-    desc: "Stack sizing, DMA alignment, cache coherency — no allocation unaccounted.",
+    desc: "Stack sizing, DMA alignment, cache coherency. No allocation unaccounted.",
   },
 ];
 
@@ -63,6 +63,7 @@ export default function About() {
 
         <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
 
+          {/* Left: bio + terminal */}
           <div className="lg:col-span-3 space-y-4">
 
             {/* Bio card */}
@@ -83,32 +84,70 @@ export default function About() {
 
               <div className="space-y-4 text-sm sm:text-base text-gray-400 leading-relaxed">
                 <p>
-                  [Insert bio here — describe your background, what drew you to embedded
-                  systems, your passion for writing firmware and working close to the
-                  hardware. Talk about your journey from tinkering with microcontrollers
-                  to professional embedded development.]
+                  Embedded Software Engineer{" "}
+                  <span className="text-blue-400">@ Linumiz</span>, working at the intersection
+                  of bare-metal hardware and the Zephyr software stack.
                 </p>
-                <p>
-                  [Second paragraph — current focus areas, what excites you about the
-                  field, notable achievements or contributions to open-source embedded
-                  projects such as Zephyr or the Linux kernel.]
-                </p>
-                <p>
-                  Particularly interested in{" "}
-                  <span className="text-gray-300">NPUs</span> and{" "}
-                  <span className="text-gray-300">ARM Cortex-M/A</span> — exploring the
-                  intersection of edge AI inference and power-efficient low-level system design.
+
+                <div className="space-y-2">
+                  <p className="text-gray-300 text-xs uppercase tracking-wider font-terminal">
+                    What I actually do
+                  </p>
+                  <ul className="space-y-1.5 text-sm text-gray-400">
+                    <li className="flex items-start gap-2">
+                      <span className="text-blue-400 mt-0.5 flex-shrink-0">•</span>
+                      <span>
+                        <span className="text-gray-200">Upstream Zephyr RTOS contributor:</span>{" "}
+                        Developing and upstreaming drivers for various SoCs.
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-blue-400 mt-0.5 flex-shrink-0">•</span>
+                      <span>
+                        <span className="text-gray-200">Zephyr Subsystem:</span>{" "}
+                        Working across BLE, USB, LoRa, Modem (LTE/GNSS) subsystems in Zephyr.
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-blue-400 mt-0.5 flex-shrink-0">•</span>
+                      <span>
+                        <span className="text-gray-200">Linux Kernel:</span>{" "}
+                        Devicetree (DTS/DTSI), Kconfig, and Yocto-based BSP work. Worked with
+                        Mesa/NPU stack on i.MX8MP for ML inference pipelines at the edge.
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="space-y-1">
+                  <p className="text-gray-300 text-xs uppercase tracking-wider font-terminal">
+                    Background
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    ECE{" "}
+                    <span className="text-gray-300">@ Kumaraguru College of Technology</span>,
+                    2025 |{" "}
+                    Schooling{" "}
+                    <span className="text-gray-300">@ St. Paul&apos;s MHSS</span>
+                  </p>
+                </div>
+
+                <p className="text-sm text-gray-400 border-l-2 border-blue-500/40 pl-3">
+                  I also have high interests in{" "}
+                  <span className="text-emerald-400">NPU</span>,{" "}
+                  <span className="text-emerald-400">Edge AI</span>, and{" "}
+                  <span className="text-emerald-400">Machine Learning</span>.
                 </p>
               </div>
             </div>
 
-            {/* Terminal card — font-mono (JetBrains Mono), colours kept */}
+            {/* Terminal card */}
             <div
               className="rounded-xl p-4 font-mono text-xs leading-relaxed"
               style={{
                 ...GLASS,
-                background: "rgba(7,10,25,0.3)",
-                border: "1px solid rgba(59,130,246,0.2)",
+                background: "rgba(7,10,25,0.55)",
+                border: "1px solid rgba(59,130,246,0.18)",
               }}
             >
               {/* Title bar */}
@@ -125,8 +164,8 @@ export default function About() {
                   <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
                   <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
                 </div>
-                <span className="text-[10px] text-gray-500 ml-1">
-                  bash — user@embedded — 80x24
+                <span className="font-terminal text-[10px] text-gray-500 ml-1">
+                  bash | user@embedded | 80x24
                 </span>
               </div>
 
@@ -144,47 +183,51 @@ export default function About() {
                   <div>
                     <span className="text-blue-300">FOCUS     </span>
                     <span className="text-gray-600"> = </span>
-                    <span className="text-amber-400">&quot;Drivers · BSP · Safety-Critical FW&quot;</span>
+                    <span className="text-amber-400">&quot;Drivers · BSP · application development&quot;</span>
                   </div>
                   <div>
                     <span className="text-blue-300">MINDSET   </span>
                     <span className="text-gray-600"> = </span>
                     <span className="text-amber-400">&quot;Deterministic · Minimal · Correct&quot;</span>
                   </div>
+                  {/* Compliance: Zephyr, Linux, Yocto */}
                   <div>
                     <span className="text-red-400">COMPLIANCE</span>
                     <span className="text-gray-600"> = </span>
-                    <span className="text-amber-400">&quot;MISRA C:2012 · ISO 26262 · POSIX&quot;</span>
+                    <span className="text-amber-400">&quot;Zephyr upstream · Linux kernel · Yocto BSP&quot;</span>
                   </div>
                 </div>
 
+                {/* uname -m: 32bit arm */}
                 <div className="mt-3">
                   <Prompt /><span className="text-gray-300">uname -m</span>
                 </div>
-                <div className="pl-2 text-emerald-400">aarch64</div>
+                <div className="pl-2 text-emerald-400">32bit arm architecture</div>
 
+                {/* uptime: 1+ years */}
                 <div>
                   <Prompt /><span className="text-gray-300">uptime --pretty</span>
                 </div>
                 <div className="pl-2 text-emerald-400">
-                  up <span className="text-white">8+ years</span> building firmware
+                  up <span className="text-white">1+ year</span> building firmware
                 </div>
 
+                {/* Real commits */}
                 <div>
                   <Prompt /><span className="text-gray-300">git log --oneline -3</span>
                 </div>
                 <div className="pl-2 space-y-0.5">
                   <div>
-                    <span className="text-yellow-600">a3f2c1e</span>{" "}
-                    <span className="text-gray-400">fix: resolve CAN-FD timing drift under IRQ load</span>
+                    <span className="text-yellow-600">7de4669</span>{" "}
+                    <span className="text-gray-400">dts: bindings: can: add DT bindings for TI MSPM0 G-Series MCAN module</span>
                   </div>
                   <div>
-                    <span className="text-yellow-600">b8d0a4f</span>{" "}
-                    <span className="text-gray-400">feat: add Zephyr USB CDC-ACM bulk transfer</span>
+                    <span className="text-yellow-600">cd64a82</span>{" "}
+                    <span className="text-gray-400">drivers: can: add driver support for TI MSPM0 G-Series MCAN module</span>
                   </div>
                   <div>
-                    <span className="text-yellow-600">c912b3d</span>{" "}
-                    <span className="text-gray-400">docs: update DTS binding for custom sensor</span>
+                    <span className="text-yellow-600">5fc39fa</span>{" "}
+                    <span className="text-gray-400">dts: arm: ti: mspm0: g: add CAN-FD support for TI MSPM0 G-Series</span>
                   </div>
                 </div>
 
@@ -195,7 +238,7 @@ export default function About() {
             </div>
           </div>
 
-          {/* Highlight cards — smooth hover, no gradient */}
+          {/* Right: highlight cards */}
           <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
             {highlights.map((item) => (
               <div

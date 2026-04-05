@@ -30,7 +30,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  /* ── IntersectionObserver — track active section ── */
+  /* ── IntersectionObserver -- track active section ── */
   useEffect(() => {
     if (pathname !== "/") return;
     const obs: IntersectionObserver[] = [];
@@ -47,21 +47,18 @@ export default function Navbar() {
     return () => obs.forEach((o) => o.disconnect());
   }, [pathname]);
 
-  /* ── Smooth scroll handler — works with basePath + static export ── */
+  /* ── Smooth scroll handler ── */
   const handleNavClick = useCallback(
     (e: React.MouseEvent, link: (typeof navLinks)[number]) => {
-      if (!link.section) return; // Blog — let Next.js navigate normally
+      if (!link.section) return;
 
       if (pathname === "/") {
-        // Already on home page — just scroll
         e.preventDefault();
         const el = document.getElementById(link.section);
         if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
       } else {
-        // On a different page — navigate home then scroll
         e.preventDefault();
         router.push("/");
-        // Give time for page to mount, then scroll
         setTimeout(() => {
           const el = document.getElementById(link.section!);
           if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -74,7 +71,8 @@ export default function Navbar() {
   const isActive = useCallback(
     (link: (typeof navLinks)[number]) => {
       if (link.href === "/blog") return pathname.startsWith("/blog");
-      if (pathname.startsWith("/blog")) return false;
+      if (link.section === "experience" && pathname.startsWith("/projects")) return true;
+      if (pathname.startsWith("/blog") || pathname.startsWith("/projects")) return false;
       return link.section === activeSection;
     },
     [pathname, activeSection]
@@ -98,7 +96,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16">
 
-          {/* ── Brand — far left ─────────────────────────── */}
+          {/* ── Brand ── */}
           <Link href="/" className="flex items-center gap-2 group flex-shrink-0" aria-label="Home">
             <div
               className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center"
@@ -115,7 +113,7 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* ── Desktop nav — far right ───────────────────── */}
+          {/* ── Desktop nav ── */}
           <div className="hidden md:flex items-center gap-0.5">
             {navLinks.map((link) => {
               const active = isActive(link);
@@ -128,7 +126,6 @@ export default function Navbar() {
                   className={active ? "nav-link-active" : "nav-link"}
                 >
                   {link.name}
-                  {/* Glowing blue dot for active page */}
                   {active && (
                     <span
                       className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-blue-400"
@@ -140,7 +137,7 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* ── Mobile hamburger ──────────────────────────── */}
+          {/* ── Mobile hamburger ── */}
           <button
             onClick={() => setIsOpen((o) => !o)}
             aria-label="Toggle menu"
@@ -153,7 +150,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* ── Mobile drawer ───────────────────────────────────── */}
+      {/* ── Mobile drawer ── */}
       <div
         style={{
           maxHeight: isOpen ? "22rem" : "0",

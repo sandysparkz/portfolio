@@ -1,13 +1,30 @@
 "use client";
 
-import { ArrowDown, ChevronRight, Cpu } from "lucide-react";
-import { FaGithub, FaLinkedin, FaDiscord, FaGitlab } from "react-icons/fa";
+import {
+  Code,
+  Globe,
+  MessageCircle,
+  GitBranch,
+  ArrowDown,
+  ChevronRight,
+  Cpu,
+} from "lucide-react";
 
+/*
+ * NOTE on brand icons:
+ * Lucide-React has no social brand logos. Install react-icons:
+ *   npm install react-icons
+ * Then swap:
+ *   FaGithub  (react-icons/fa) -> Code
+ *   FaLinkedin(react-icons/fa) -> Globe
+ *   FaGitlab  (react-icons/fa) -> GitBranch
+ *   FaDiscord (react-icons/fa) -> MessageCircle
+ */
 const socials = [
-  { icon: FaLinkedin, href: "https://linkedin.com/in/yourprofile", label: "LinkedIn" },
-  { icon: FaGithub,   href: "https://github.com/yourusername",     label: "GitHub"   },
-  { icon: FaGitlab,   href: "https://gitlab.com/yourusername",     label: "GitLab"   },
-  { icon: FaDiscord,  href: "https://discord.com/users/yourid",    label: "Discord"  },
+  { icon: Globe,         href: "https://linkedin.com/in/yourprofile", label: "LinkedIn" },
+  { icon: Code,          href: "https://github.com/sandys",           label: "GitHub"   },
+  { icon: GitBranch,     href: "https://gitlab.com/yourusername",     label: "GitLab"   },
+  { icon: MessageCircle, href: "https://discord.com/users/yourid",    label: "Discord"  },
 ];
 
 export default function Hero() {
@@ -16,12 +33,14 @@ export default function Hero() {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
+      {/* Faint radial glow */}
       <div
         aria-hidden="true"
         className="absolute top-1/3 left-1/4 w-[40rem] h-[40rem] rounded-full pointer-events-none"
         style={{ background: "radial-gradient(circle, rgba(59,130,246,0.03) 0%, transparent 65%)" }}
       />
 
+      {/* Bottom fade */}
       <div
         aria-hidden="true"
         className="absolute inset-x-0 bottom-0 h-40 pointer-events-none"
@@ -31,6 +50,7 @@ export default function Hero() {
       <div className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24 sm:pt-32 sm:pb-32">
         <div className="max-w-2xl">
 
+          {/* Terminal eyebrow */}
           <p
             className="font-terminal text-xs sm:text-sm text-gray-600 mb-5 animate-fade-in"
             style={{ animationDelay: "0ms" }}
@@ -39,14 +59,16 @@ export default function Hero() {
             <span className="text-blue-400">whoami</span>
           </p>
 
+          {/* Name — "Hello I'm Sandy" */}
           <h1
             className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.05] animate-slide-up text-white"
             style={{ animationDelay: "80ms" }}
           >
-            Hi, I&apos;m{" "}
-            <span className="text-white">[Your Name]</span>
+            Hello, I&apos;m{" "}
+            <span className="text-white">Sandy</span>
           </h1>
 
+          {/* Role */}
           <div
             className="mt-4 flex items-center gap-2.5 animate-slide-up"
             style={{ animationDelay: "160ms" }}
@@ -57,16 +79,18 @@ export default function Hero() {
             </h2>
           </div>
 
+          {/* Tagline — no comma, no "and", "c" lowercase */}
           <p
             className="mt-5 text-base sm:text-lg text-gray-500 leading-relaxed animate-slide-up"
             style={{ animationDelay: "220ms" }}
           >
             Specialising in{" "}
-            <span className="inline-code">Zephyr RTOS</span>,{" "}
-            <span className="inline-code">Embedded Linux</span>, and{" "}
-            <span className="inline-code">Low-Level C</span>.
+            <span className="inline-code">Zephyr RTOS</span>{" "}
+            <span className="inline-code">Embedded Linux</span>{" "}
+            <span className="inline-code">c</span>.
           </p>
 
+          {/* CTAs */}
           <div
             className="mt-9 flex flex-wrap items-center gap-3 animate-slide-up"
             style={{ animationDelay: "300ms" }}
@@ -80,6 +104,7 @@ export default function Hero() {
             </a>
           </div>
 
+          {/* Social links */}
           <div
             className="mt-10 flex items-center gap-2.5 animate-slide-up"
             style={{ animationDelay: "380ms" }}
@@ -98,7 +123,7 @@ export default function Hero() {
                 style={{
                   background: "rgba(255,255,255,0.03)",
                   boxShadow: "0 0 0 rgba(59,130,246,0)",
-                  transition: "all 0.35s cubic-bezier(0.16,1,0.3,1)",
+                  transition: "all 0.28s cubic-bezier(0.16,1,0.3,1)",
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget as HTMLElement;
@@ -114,7 +139,7 @@ export default function Hero() {
                   el.style.borderColor = "rgba(255,255,255,0.08)";
                   el.style.color       = "rgb(107,114,128)";
                   el.style.transform   = "translateY(0)";
-                  el.style.boxShadow   = "0 0 0 rgba(59,130,246,0)";
+                  el.style.boxShadow   = "none";
                 }}
               >
                 <s.icon className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -123,6 +148,7 @@ export default function Hero() {
           </div>
         </div>
 
+        {/* Scroll cue */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-1 opacity-25">
           <span className="font-terminal text-[10px] text-gray-500 uppercase tracking-widest">scroll</span>
           <ArrowDown className="w-3.5 h-3.5 text-gray-500 animate-bounce" />

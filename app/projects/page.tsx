@@ -1,41 +1,75 @@
 "use client";
 
+import { useState } from "react";
+import { Calendar, ExternalLink, ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { Calendar, ExternalLink, ArrowRight } from "lucide-react";
-import { GLASS } from "./glassConfig";
-import { getRecentProjects } from "@/lib/projectData";
+import { GLASS } from "@/components/glassConfig";
+import { projects, allProjectTags } from "@/lib/projectData";
 
-const recentProjects = getRecentProjects(4);
+export default function ProjectsPage() {
+  const [activeTag, setActiveTag] = useState<string | null>(null);
 
-export default function Experience() {
+  const filtered = activeTag
+    ? projects.filter((p) => p.tags.includes(activeTag))
+    : projects;
+
   return (
-    <section id="experience" className="py-20 sm:py-28">
+    <section className="pt-28 sm:pt-36 pb-20 sm:pb-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
+        {/* Back link */}
+        <Link
+          href="/"
+          className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-blue-400 transition-colors mb-10"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Back to home
+        </Link>
+
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-12 sm:mb-14">
-          <div>
-            <div className="section-label">
-              <div className="section-label-line" />
-              <span className="section-label-text">Projects</span>
-            </div>
-            <h2 className="section-title">Experience &amp; Projects</h2>
-            <p className="section-subtitle">
-              A selection of embedded systems projects I&apos;ve built.
-            </p>
+        <div className="mb-12 sm:mb-14">
+          <div className="section-label">
+            <div className="section-label-line" />
+            <span className="section-label-text">Projects</span>
           </div>
-          <Link
-            href="/projects"
-            className="btn-secondary self-start sm:self-auto flex-shrink-0 flex items-center gap-2"
-          >
-            All Projects
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <h2 className="section-title">All Projects</h2>
+          <p className="section-subtitle">
+            Contributions and projects across Zephyr RTOS, embedded Linux, and low-level systems.
+          </p>
         </div>
 
-        {/* Grid */}
+        {/* Tag filter */}
+        <div className="flex flex-wrap gap-2 mb-10">
+          <button
+            onClick={() => setActiveTag(null)}
+            className="px-3 py-1.5 rounded-lg font-mono text-xs transition-all duration-200"
+            style={{
+              background: !activeTag ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.04)",
+              color: !activeTag ? "#0e0e0e" : "#6b7280",
+              border: !activeTag ? "1px solid rgba(255,255,255,0.2)" : "1px solid rgba(255,255,255,0.08)",
+            }}
+          >
+            all
+          </button>
+          {allProjectTags.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => setActiveTag(tag === activeTag ? null : tag)}
+              className="px-3 py-1.5 rounded-lg font-mono text-xs transition-all duration-200"
+              style={{
+                background: tag === activeTag ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.04)",
+                color: tag === activeTag ? "#0e0e0e" : "#6b7280",
+                border: tag === activeTag ? "1px solid rgba(255,255,255,0.2)" : "1px solid rgba(255,255,255,0.08)",
+              }}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+
+        {/* Projects grid */}
         <div className="grid sm:grid-cols-2 gap-4 lg:gap-5">
-          {recentProjects.map((project, i) => (
+          {filtered.map((project, i) => (
             <article
               key={i}
               className="group flex flex-col rounded-xl p-6"
@@ -62,7 +96,6 @@ export default function Experience() {
                 el.style.transform   = "translateY(0)";
               }}
             >
-              {/* Header row */}
               <div className="flex items-start justify-between mb-4">
                 <div
                   className="p-2.5 rounded-xl"
@@ -112,6 +145,12 @@ export default function Experience() {
             </article>
           ))}
         </div>
+
+        {filtered.length === 0 && (
+          <div className="text-center py-16">
+            <p className="text-gray-500 text-sm">No projects found for this tag.</p>
+          </div>
+        )}
       </div>
     </section>
   );

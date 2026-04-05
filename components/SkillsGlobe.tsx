@@ -17,13 +17,13 @@ const SKILLS_DATA = [
   { name: "Yocto", weight: 1.05 },
   { name: "U-Boot", weight: 1.0 },
   { name: "Device Tree", weight: 1.0 },
-  { name: "POSIX", weight: 0.95 },
   { name: "I2C", weight: 0.9 },
   { name: "SPI", weight: 0.9 },
   { name: "UART", weight: 0.9 },
   { name: "USB", weight: 0.95 },
   { name: "BLE", weight: 0.95 },
   { name: "CAN-FD", weight: 0.9 },
+  { name: "Modbus", weight: 0.8 },
   { name: "Git", weight: 1.0 },
   { name: "GDB", weight: 0.85 },
   { name: "CMake", weight: 0.9 },
@@ -39,7 +39,6 @@ const SKILLS_DATA = [
 
 type V3 = [number, number, number];
 
-// build geodesic edges once
 function buildGeodesic(subdivisions: number): [V3, V3][] {
   const phi = (1 + Math.sqrt(5)) / 2;
 
@@ -48,7 +47,6 @@ function buildGeodesic(subdivisions: number): [V3, V3][] {
     return [v[0] / len, v[1] / len, v[2] / len];
   };
 
-  // icosahedron vertices
   const raw: V3[] = [
     [-1, phi, 0], [1, phi, 0], [-1, -phi, 0], [1, -phi, 0],
     [0, -1, phi], [0, 1, phi], [0, -1, -phi], [0, 1, -phi],
@@ -56,7 +54,6 @@ function buildGeodesic(subdivisions: number): [V3, V3][] {
   ];
   const verts: V3[] = raw.map(normalize);
 
-  // icosahedron faces
   let faces: [number, number, number][] = [
     [0, 11, 5], [0, 5, 1], [0, 1, 7], [0, 7, 10], [0, 10, 11],
     [1, 5, 9], [5, 11, 4], [11, 10, 2], [10, 7, 6], [7, 1, 8],
@@ -64,7 +61,6 @@ function buildGeodesic(subdivisions: number): [V3, V3][] {
     [4, 9, 5], [2, 4, 11], [6, 2, 10], [8, 6, 7], [9, 8, 1],
   ];
 
-  // subdivide
   for (let s = 0; s < subdivisions; s++) {
     const midCache = new Map<string, number>();
     const getMid = (a: number, b: number): number => {
@@ -91,7 +87,6 @@ function buildGeodesic(subdivisions: number): [V3, V3][] {
     faces = newFaces;
   }
 
-  // collect unique edges
   const edgeSet = new Set<string>();
   const edges: [V3, V3][] = [];
   for (const [a, b, c] of faces) {
@@ -178,7 +173,8 @@ export default function SkillsGlobe({ radius = 160 }: { radius?: number }) {
         const avgDepth = (depthA + depthB) / 2;
         const alpha = 0.04 + avgDepth * 0.14;
 
-        ctx.strokeStyle = `rgba(59,130,246,${alpha})`;
+        /* GLOBE LINES: red (220,38,38) — text labels stay blue */
+        ctx.strokeStyle = `rgba(220,38,38,${alpha})`;
         ctx.lineWidth = 0.6 + avgDepth * 0.4;
         ctx.beginPath();
         ctx.moveTo(cx + ax0, cy + ay0);
@@ -305,6 +301,7 @@ export default function SkillsGlobe({ radius = 160 }: { radius?: number }) {
         className="absolute inset-0 m-auto pointer-events-none"
       />
 
+      {/* Text labels — remain blue (unchanged) */}
       {projected.map((p, i) => (
         <span
           key={p.name}
