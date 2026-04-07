@@ -1,5 +1,5 @@
 1:"$Sreact.fragment"
-2:I[39756,["/portfolio/_next/static/chunks/0uimccynpoo16.js","/portfolio/_next/static/chunks/05mg2hjf8pm_~.js","/portfolio/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
-3:I[37457,["/portfolio/_next/static/chunks/0uimccynpoo16.js","/portfolio/_next/static/chunks/05mg2hjf8pm_~.js","/portfolio/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
+2:I[39756,["/portfolio/_next/static/chunks/16qegv30ojp31.js","/portfolio/_next/static/chunks/05mg2hjf8pm_~.js","/portfolio/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
+3:I[37457,["/portfolio/_next/static/chunks/16qegv30ojp31.js","/portfolio/_next/static/chunks/05mg2hjf8pm_~.js","/portfolio/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
 4:[]
-0:{"rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"isPartial":false,"staleTime":300,"varyParams":"$W4","buildId":"TT9evx27r6B-HasiVEerf"}
+0:{"rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"isPartial":false,"staleTime":300,"varyParams":"$W4","buildId":"iPlqMnCw_QQnuTxrJ41Qj"}
