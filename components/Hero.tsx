@@ -1,30 +1,14 @@
 "use client";
 
-import {
-  Code,
-  Globe,
-  MessageCircle,
-  GitBranch,
-  ArrowDown,
-  ChevronRight,
-  Cpu,
-} from "lucide-react";
+import Link from "next/link";
+import { ArrowDown, ChevronRight, Cpu } from "lucide-react";
+import { FaGithub, FaLinkedin, FaGitlab, FaDiscord } from "react-icons/fa6";
 
-/*
- * NOTE on brand icons:
- * Lucide-React has no social brand logos. Install react-icons:
- *   npm install react-icons
- * Then swap:
- *   FaGithub  (react-icons/fa) -> Code
- *   FaLinkedin(react-icons/fa) -> Globe
- *   FaGitlab  (react-icons/fa) -> GitBranch
- *   FaDiscord (react-icons/fa) -> MessageCircle
- */
 const socials = [
-  { icon: Globe,         href: "https://linkedin.com/in/yourprofile", label: "LinkedIn" },
-  { icon: Code,          href: "https://github.com/sandys",           label: "GitHub"   },
-  { icon: GitBranch,     href: "https://gitlab.com/yourusername",     label: "GitLab"   },
-  { icon: MessageCircle, href: "https://discord.com/users/yourid",    label: "Discord"  },
+  { icon: FaLinkedin, href: "https://linkedin.com/in/yourprofile", label: "LinkedIn" },
+  { icon: FaGithub,   href: "https://github.com/sandys",           label: "GitHub"   },
+  { icon: FaGitlab,   href: "https://gitlab.com/yourusername",     label: "GitLab"   },
+  { icon: FaDiscord,  href: "https://discord.com/users/yourid",    label: "Discord"  },
 ];
 
 export default function Hero() {
@@ -39,8 +23,6 @@ export default function Hero() {
         className="absolute top-1/3 left-1/4 w-[40rem] h-[40rem] rounded-full pointer-events-none"
         style={{ background: "radial-gradient(circle, rgba(59,130,246,0.03) 0%, transparent 65%)" }}
       />
-
-      {/* Bottom fade */}
       <div
         aria-hidden="true"
         className="absolute inset-x-0 bottom-0 h-40 pointer-events-none"
@@ -50,7 +32,7 @@ export default function Hero() {
       <div className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24 sm:pt-32 sm:pb-32">
         <div className="max-w-2xl">
 
-          {/* Terminal eyebrow */}
+          {/* Terminal eyebrow — only Share Tech Mono here */}
           <p
             className="font-terminal text-xs sm:text-sm text-gray-600 mb-5 animate-fade-in"
             style={{ animationDelay: "0ms" }}
@@ -59,7 +41,7 @@ export default function Hero() {
             <span className="text-blue-400">whoami</span>
           </p>
 
-          {/* Name — "Hello I'm Sandy" */}
+          {/* Name */}
           <h1
             className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.05] animate-slide-up text-white"
             style={{ animationDelay: "80ms" }}
@@ -74,12 +56,12 @@ export default function Hero() {
             style={{ animationDelay: "160ms" }}
           >
             <Cpu className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400 flex-shrink-0" />
-            <h2 className="text-lg sm:text-xl font-semibold text-gray-400 tracking-tight">
+            <h2 className="text-lg sm:text-xl font-semibold text-gray-400 tracking-tight uppercase">
               Embedded Software Engineer
             </h2>
           </div>
 
-          {/* Tagline — no comma, no "and", "c" lowercase */}
+          {/* Tagline */}
           <p
             className="mt-5 text-base sm:text-lg text-gray-500 leading-relaxed animate-slide-up"
             style={{ animationDelay: "220ms" }}
@@ -90,21 +72,21 @@ export default function Hero() {
             <span className="inline-code">c</span>.
           </p>
 
-          {/* CTAs */}
+          {/* CTAs — use Next.js Link so basePath is respected */}
           <div
             className="mt-9 flex flex-wrap items-center gap-3 animate-slide-up"
             style={{ animationDelay: "300ms" }}
           >
-            <a href="/blog" className="btn-primary">
+            <Link href="/blog" className="btn-primary">
               Read the Blog
               <ChevronRight className="w-4 h-4" />
-            </a>
+            </Link>
             <a href="#contact" className="btn-secondary">
               Get in Touch
             </a>
           </div>
 
-          {/* Social links */}
+          {/* Social links — real brand icons */}
           <div
             className="mt-10 flex items-center gap-2.5 animate-slide-up"
             style={{ animationDelay: "380ms" }}
@@ -122,7 +104,6 @@ export default function Hero() {
                 className="p-2 sm:p-2.5 rounded-lg text-gray-500 border border-white/8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 style={{
                   background: "rgba(255,255,255,0.03)",
-                  boxShadow: "0 0 0 rgba(59,130,246,0)",
                   transition: "all 0.28s cubic-bezier(0.16,1,0.3,1)",
                 }}
                 onMouseEnter={(e) => {

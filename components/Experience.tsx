@@ -1,11 +1,47 @@
 "use client";
 
 import Link from "next/link";
-import { Calendar, ExternalLink, ArrowRight } from "lucide-react";
+import { Calendar, ExternalLink, ArrowRight, Cable, Server, Bluetooth, Radio } from "lucide-react";
 import { GLASS } from "./glassConfig";
-import { getRecentProjects } from "@/lib/projectData";
 
-const recentProjects = getRecentProjects(4);
+const projects = [
+  {
+    title: "USB CDC ECM Host Support",
+    date: "2026",
+    tags: ["ZEPHYR", "USB", "ECM", "C"],
+    description:
+      "Introduces USB CDC ECM (Ethernet Control Model) class support to the Zephyr USB host subsystem, enabling Ethernet functionality for USB hosts.",
+    ProjectIcon: Cable,
+    links: { github: "https://github.com/zephyrproject-rtos/zephyr/pull/99097" },
+  },
+  {
+    title: "MCAN Driver for MSPM0 G-Series",
+    date: "2026",
+    tags: ["ZEPHYR", "CAN", "C"],
+    description:
+      "Introduces driver support for the MCAN (CAN FD and classic CAN) module on TI MSPM0 G-Series microcontrollers. Supports both classic CAN and CAN FD protocols, enabling flexible CAN communication.",
+    ProjectIcon: Radio,
+    links: { github: "https://github.com/zephyrproject-rtos/zephyr/pull/97092" },
+  },
+  {
+    title: "SPI Driver for MSPM0 Series",
+    date: "2026",
+    tags: ["ZEPHYR", "SPI", "C"],
+    description:
+      "Adds SPI driver support for TI MSPM0 microcontrollers. Implements SPI master mode with configurable frame size (4-16 bits), clock polarity, phase, and bit order. Integrates with Zephyr's SPI subsystem with standard API compliance.",
+    ProjectIcon: Server,
+    links: { github: "https://github.com/zephyrproject-rtos/zephyr/pull/94726" },
+  },
+  {
+    title: "DAC Driver for MSPM0 G-Series",
+    date: "2026",
+    tags: ["ZEPHYR", "DAC", "C"],
+    description:
+      "Adds support for the DAC module on TI MSPM0 G-Series MCUs. Supports 8-bit and 12-bit resolution configurable via driver APIs. Supports selecting the voltage reference source; external reference selectable via Kconfig.",
+    ProjectIcon: Bluetooth,
+    links: { github: "https://github.com/zephyrproject-rtos/zephyr/pull/94725" },
+  },
+];
 
 export default function Experience() {
   return (
@@ -19,11 +55,12 @@ export default function Experience() {
               <div className="section-label-line" />
               <span className="section-label-text">Projects</span>
             </div>
-            <h2 className="section-title">Experience &amp; Projects</h2>
+            <h2 className="section-title uppercase">Experience &amp; Projects</h2>
             <p className="section-subtitle">
               A selection of embedded systems projects I&apos;ve built.
             </p>
           </div>
+          {/* All Projects links to the full projects page */}
           <Link
             href="/projects"
             className="btn-secondary self-start sm:self-auto flex-shrink-0 flex items-center gap-2"
@@ -35,7 +72,7 @@ export default function Experience() {
 
         {/* Grid */}
         <div className="grid sm:grid-cols-2 gap-4 lg:gap-5">
-          {recentProjects.map((project, i) => (
+          {projects.map((project, i) => (
             <article
               key={i}
               className="group flex flex-col rounded-xl p-6"
@@ -91,19 +128,23 @@ export default function Experience() {
                 </div>
               </div>
 
-              <h3 className="text-sm sm:text-base font-semibold text-gray-300 group-hover:text-blue-200 mb-2 leading-snug transition-colors duration-300">
+              {/* Title — uppercase */}
+              <h3 className="text-sm sm:text-base font-bold text-gray-300 group-hover:text-blue-200 mb-2 leading-snug transition-colors duration-300 uppercase tracking-wide">
                 {project.title}
               </h3>
 
+              {/* Date */}
               <div className="flex items-center gap-1.5 mb-3">
                 <Calendar className="w-3.5 h-3.5 text-gray-600 flex-shrink-0" />
                 <span className="font-terminal text-[11px] text-gray-600">{project.date}</span>
               </div>
 
+              {/* Description — sentence case */}
               <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4 flex-1">
                 {project.description}
               </p>
 
+              {/* Tags — uppercase */}
               <div className="flex flex-wrap gap-1.5">
                 {project.tags.map((tag) => (
                   <span key={tag} className="tech-tag">{tag}</span>

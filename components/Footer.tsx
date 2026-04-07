@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Terminal, Heart, Code, Globe, GitBranch, MessageCircle } from "lucide-react";
+import { Terminal, Heart } from "lucide-react";
+import { FaGithub, FaLinkedin, FaGitlab, FaDiscord } from "react-icons/fa6";
 
 const navLinks = [
   { label: "Home",     href: "/"           },
@@ -13,10 +14,10 @@ const navLinks = [
 ];
 
 const socials = [
-  { icon: Code,          href: "https://github.com/sandys",              label: "GitHub"   },
-  { icon: Globe,         href: "https://linkedin.com/in/yourprofile",    label: "LinkedIn" },
-  { icon: GitBranch,     href: "https://gitlab.com/yourusername",        label: "GitLab"   },
-  { icon: MessageCircle, href: "#",                                      label: "Discord"  },
+  { icon: FaGithub,   href: "https://github.com/sandys",              label: "GitHub"   },
+  { icon: FaLinkedin, href: "https://linkedin.com/in/yourprofile",    label: "LinkedIn" },
+  { icon: FaGitlab,   href: "https://gitlab.com/yourusername",        label: "GitLab"   },
+  { icon: FaDiscord,  href: "#",                                      label: "Discord"  },
 ];
 
 export default function Footer() {
@@ -131,7 +132,7 @@ export default function Footer() {
           className="mt-10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3"
           style={{ borderTop: "1px solid rgba(59,130,246,0.08)" }}
         >
-          {/* Copyright — Inter/body font, distinct teal color */}
+          {/* Copyright — Inter body font, distinct teal color */}
           <p className="text-[11px] text-teal-700/60 tracking-wide">
             &copy; {new Date().getFullYear()} Sandy. All rights reserved.
           </p>

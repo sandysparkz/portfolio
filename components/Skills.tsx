@@ -52,13 +52,13 @@ const categories: Category[] = [
   {
     id: "zephyr", Icon: Cpu, title: "Zephyr Expertise",
     skills: [
-      { name: "Zephyr Drivers",           level: "expert",     Icon: Cpu      },
-      { name: "Zephyr application development", level: "expert", Icon: Cpu    },
-      { name: "Kconfig / menuconfig",     level: "expert"                     },
-      { name: "West Build System",        level: "expert"                     },
-      { name: "Devicetree (DTS)",         level: "expert"                     },
-      { name: "Zephyr USB Stack",         level: "proficient", Icon: Cable    },
-      { name: "Zephyr BLE Stack",         level: "proficient", Icon: Bluetooth},
+      { name: "Zephyr Drivers",               level: "expert",     Icon: Cpu      },
+      { name: "Zephyr application development", level: "expert",   Icon: Cpu      },
+      { name: "Kconfig / menuconfig",          level: "expert"                    },
+      { name: "West Build System",             level: "expert"                    },
+      { name: "Devicetree (DTS)",              level: "expert"                    },
+      { name: "Zephyr USB Stack",              level: "proficient", Icon: Cable   },
+      { name: "Zephyr BLE Stack",              level: "proficient", Icon: Bluetooth },
     ],
   },
   {
@@ -109,11 +109,11 @@ export default function Skills() {
             <div className="section-label-line" />
             <span className="section-label-text">Skills</span>
           </div>
-          <h2 className="section-title">Skills &amp; Technologies</h2>
+          <h2 className="section-title uppercase">Skills &amp; Technologies</h2>
           <p className="section-subtitle">The toolbox I reach for to bring embedded systems to life.</p>
         </div>
 
-        {/* Category tabs */}
+        {/* Category tabs — uppercase */}
         <div className="flex flex-wrap gap-2 mb-8 sm:mb-10">
           {categories.map((cat) => {
             const isActive = cat.id === activeId;
@@ -122,7 +122,7 @@ export default function Skills() {
                 key={cat.id}
                 onClick={() => setActiveId(cat.id)}
                 aria-pressed={isActive}
-                className="flex items-center gap-2 px-3.5 py-2 rounded-lg font-mono text-xs sm:text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold uppercase tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 style={{
                   background: isActive ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.04)",
                   color:      isActive ? "#0e0e0e" : "#6b7280",
@@ -149,7 +149,7 @@ export default function Skills() {
                 <active.Icon className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
               </div>
               <div>
-                <h3 className="font-semibold text-sm sm:text-base text-white">{active.title}</h3>
+                <h3 className="font-semibold text-sm sm:text-base text-white uppercase tracking-wide">{active.title}</h3>
                 <p className="font-terminal text-[11px] text-gray-600">{active.skills.length} skills</p>
               </div>
             </div>
@@ -185,7 +185,8 @@ export default function Skills() {
                         <span className="w-1 h-1 rounded-full bg-gray-700 group-hover:bg-gray-500 transition-colors duration-200" />
                       </span>
                     )}
-                    <span className="font-mono text-xs sm:text-sm text-gray-400 group-hover:text-gray-200 truncate transition-colors duration-200">
+                    {/* Skill names — uppercase */}
+                    <span className="text-xs sm:text-sm font-medium uppercase tracking-wide text-gray-400 group-hover:text-gray-200 truncate transition-colors duration-200">
                       {skill.name}
                     </span>
                   </div>
@@ -207,7 +208,7 @@ export default function Skills() {
                 border: "1px solid rgba(255,255,255,0.07)",
               }}
             >
-              <h3 className="font-semibold text-sm text-white mb-4 flex items-center gap-2">
+              <h3 className="font-semibold text-sm text-white mb-4 flex items-center gap-2 uppercase tracking-wide">
                 <Key className="w-3.5 h-3.5 text-gray-500" />
                 Proficiency Key
               </h3>
@@ -246,7 +247,7 @@ export default function Skills() {
               <SkillsGlobe radius={140} />
             </div>
 
-            {/* Terminal counter — creative output */}
+            {/* Terminal counter */}
             <div
               className="rounded-xl p-4 font-terminal text-xs"
               style={{

@@ -1,7 +1,7 @@
 "use client";
 
 import { Mail, ExternalLink } from "lucide-react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { GLASS } from "./glassConfig";
 
 const socials = [
@@ -15,8 +15,8 @@ const socials = [
   {
     icon: FaGithub,
     label: "GitHub",
-    handle: "@yourusername",
-    href: "https://github.com/yourusername",
+    handle: "@sandys",
+    href: "https://github.com/sandys",
     desc: "Open source projects & contributions",
   },
   {
@@ -33,18 +33,20 @@ export default function Contact() {
     <section id="contact" className="py-20 sm:py-28">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
+        {/* Header */}
         <div className="mb-12 sm:mb-14 text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="section-label-line" />
             <span className="section-label-text">Contact</span>
             <div className="section-label-line" />
           </div>
-          <h2 className="section-title text-center mx-auto">Get In Touch</h2>
+          <h2 className="section-title text-center mx-auto uppercase">Get In Touch</h2>
           <p className="section-subtitle text-center mx-auto">
             Reach out via any platform below. I&apos;m most responsive over email.
           </p>
         </div>
 
+        {/* Primary CTA */}
         <div className="flex justify-center mb-10">
           <a href="mailto:you@email.com" className="btn-primary text-base px-6 py-3">
             <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -53,6 +55,7 @@ export default function Contact() {
           </a>
         </div>
 
+        {/* Social grid */}
         <div className="grid sm:grid-cols-3 gap-3">
           {socials.map((s) => (
             <a
@@ -91,7 +94,7 @@ export default function Contact() {
                 <s.icon className="w-6 h-6 text-gray-500 group-hover:text-blue-300 transition-colors duration-300" />
               </div>
               <div>
-                <p className="font-semibold text-sm text-gray-300 group-hover:text-white transition-colors duration-200">
+                <p className="font-semibold text-sm text-gray-300 group-hover:text-white transition-colors duration-200 uppercase tracking-wide">
                   {s.label}
                 </p>
                 <p className="font-terminal text-[11px] text-gray-600 mt-0.5">{s.handle}</p>

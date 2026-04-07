@@ -3,35 +3,42 @@
 import { Cpu, Zap, Code2, ShieldCheck, Layers, HardDrive } from "lucide-react";
 import { GLASS } from "./glassConfig";
 
+/* Each highlight has a title color accent — blue, emerald, amber, red, violet, cyan */
 const highlights = [
   {
     icon: Cpu,
     title: "Hardware-First",
+    titleColor: "text-blue-400",
     desc: "Registers, memory maps, data sheets. Software that genuinely respects the silicon.",
   },
   {
     icon: Code2,
     title: "Low-Level Craft",
+    titleColor: "text-blue-400",
     desc: "C, bare-metal. Deterministic code with zero tolerance for undefined behaviour.",
   },
   {
     icon: Zap,
     title: "Real-Time Systems",
+    titleColor: "text-blue-400",
     desc: "Hard deadlines, minimal latency. RTOS design that is predictable and auditable.",
   },
   {
     icon: ShieldCheck,
     title: "Safety-Aware",
+    titleColor: "text-blue-400",
     desc: "MISRA C:2012 principles, static analysis discipline, safety-critical mindset.",
   },
   {
     icon: Layers,
     title: "Full Stack Firmware",
+    titleColor: "text-blue-400",
     desc: "Bootloader, BSP, drivers, middleware, application — the full picture.",
   },
   {
     icon: HardDrive,
     title: "Memory Obsessed",
+    titleColor: "text-blue-400",
     desc: "Stack sizing, DMA alignment, cache coherency. No allocation unaccounted.",
   },
 ];
@@ -57,13 +64,13 @@ export default function About() {
             <div className="section-label-line" />
             <span className="section-label-text">About</span>
           </div>
-          <h2 className="section-title">About Me</h2>
+          {/* Uppercase section title */}
+          <h2 className="section-title uppercase">About Me</h2>
           <p className="section-subtitle">The developer behind the firmware.</p>
         </div>
 
         <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
 
-          {/* Left: bio + terminal */}
           <div className="lg:col-span-3 space-y-4">
 
             {/* Bio card */}
@@ -82,6 +89,7 @@ export default function About() {
                 <span className="ml-2 font-terminal text-[10px] text-gray-600">about_me.md</span>
               </div>
 
+              {/* Bio text — Inter, sentence case in paragraphs */}
               <div className="space-y-4 text-sm sm:text-base text-gray-400 leading-relaxed">
                 <p>
                   Embedded Software Engineer{" "}
@@ -90,28 +98,28 @@ export default function About() {
                 </p>
 
                 <div className="space-y-2">
-                  <p className="text-gray-300 text-xs uppercase tracking-wider font-terminal">
+                  <p className="text-gray-300 text-xs uppercase tracking-wider font-semibold">
                     What I actually do
                   </p>
                   <ul className="space-y-1.5 text-sm text-gray-400">
                     <li className="flex items-start gap-2">
                       <span className="text-blue-400 mt-0.5 flex-shrink-0">•</span>
                       <span>
-                        <span className="text-gray-200">Upstream Zephyr RTOS contributor:</span>{" "}
+                        <span className="text-gray-200 font-semibold">Upstream Zephyr RTOS contributor:</span>{" "}
                         Developing and upstreaming drivers for various SoCs.
                       </span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-blue-400 mt-0.5 flex-shrink-0">•</span>
                       <span>
-                        <span className="text-gray-200">Zephyr Subsystem:</span>{" "}
+                        <span className="text-gray-200 font-semibold">Zephyr Subsystem:</span>{" "}
                         Working across BLE, USB, LoRa, Modem (LTE/GNSS) subsystems in Zephyr.
                       </span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-blue-400 mt-0.5 flex-shrink-0">•</span>
                       <span>
-                        <span className="text-gray-200">Linux Kernel:</span>{" "}
+                        <span className="text-gray-200 font-semibold">Linux Kernel:</span>{" "}
                         Devicetree (DTS/DTSI), Kconfig, and Yocto-based BSP work. Worked with
                         Mesa/NPU stack on i.MX8MP for ML inference pipelines at the edge.
                       </span>
@@ -120,7 +128,7 @@ export default function About() {
                 </div>
 
                 <div className="space-y-1">
-                  <p className="text-gray-300 text-xs uppercase tracking-wider font-terminal">
+                  <p className="text-gray-300 text-xs uppercase tracking-wider font-semibold">
                     Background
                   </p>
                   <p className="text-sm text-gray-500">
@@ -141,7 +149,7 @@ export default function About() {
               </div>
             </div>
 
-            {/* Terminal card */}
+            {/* Terminal card — Share Tech Mono only inside */}
             <div
               className="rounded-xl p-4 font-mono text-xs leading-relaxed"
               style={{
@@ -150,7 +158,6 @@ export default function About() {
                 border: "1px solid rgba(59,130,246,0.18)",
               }}
             >
-              {/* Title bar */}
               <div
                 className="flex items-center gap-2 mb-4 rounded-lg px-3 py-2"
                 style={{
@@ -173,7 +180,6 @@ export default function About() {
                 <div>
                   <Prompt /><span className="text-gray-300">cat ~/.profile</span>
                 </div>
-
                 <div className="pl-2 space-y-1 mt-1">
                   <div>
                     <span className="text-blue-300">SPECIALITY</span>
@@ -190,7 +196,6 @@ export default function About() {
                     <span className="text-gray-600"> = </span>
                     <span className="text-amber-400">&quot;Deterministic · Minimal · Correct&quot;</span>
                   </div>
-                  {/* Compliance: Zephyr, Linux, Yocto */}
                   <div>
                     <span className="text-red-400">COMPLIANCE</span>
                     <span className="text-gray-600"> = </span>
@@ -198,13 +203,11 @@ export default function About() {
                   </div>
                 </div>
 
-                {/* uname -m: 32bit arm */}
                 <div className="mt-3">
                   <Prompt /><span className="text-gray-300">uname -m</span>
                 </div>
                 <div className="pl-2 text-emerald-400">32bit arm architecture</div>
 
-                {/* uptime: 1+ years */}
                 <div>
                   <Prompt /><span className="text-gray-300">uptime --pretty</span>
                 </div>
@@ -212,7 +215,6 @@ export default function About() {
                   up <span className="text-white">1+ year</span> building firmware
                 </div>
 
-                {/* Real commits */}
                 <div>
                   <Prompt /><span className="text-gray-300">git log --oneline -3</span>
                 </div>
@@ -238,7 +240,7 @@ export default function About() {
             </div>
           </div>
 
-          {/* Right: highlight cards */}
+          {/* Right: highlight cards — colored titles */}
           <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
             {highlights.map((item) => (
               <div
@@ -271,7 +273,10 @@ export default function About() {
                   <item.icon className="w-4 h-4 text-gray-400" />
                 </div>
                 <div>
-                  <p className="font-semibold text-sm text-gray-200">{item.title}</p>
+                  {/* Colored + uppercase title */}
+                  <p className={`font-semibold text-sm uppercase tracking-wide ${item.titleColor}`}>
+                    {item.title}
+                  </p>
                   <p className="text-xs text-gray-600 mt-0.5 leading-relaxed">{item.desc}</p>
                 </div>
               </div>
