@@ -117,11 +117,11 @@ export default function Footer() {
               <span className="text-gray-600">uname -a</span>
               <br />
               <span className="pl-2">
-                <span className="text-blue-700">Embedded</span>
+                <span className="text-blue-700">Zephyr</span>
                 <span className="text-gray-700"> · </span>
                 <span className="text-emerald-700">Linux</span>
                 <span className="text-gray-700"> · </span>
-                <span className="text-blue-700">Zephyr</span>
+                <span className="text-blue-700">C</span>
               </span>
             </div>
           </div>
@@ -134,7 +134,7 @@ export default function Footer() {
         >
           {/* Copyright — Inter body font, distinct teal color */}
           <p className="text-[11px] text-teal-700/60 tracking-wide">
-            &copy; {new Date().getFullYear()} Sandy. All rights reserved.
+            &copy; {new Date().getFullYear()} Santhosh. All rights reserved.
           </p>
 
           {/* Built with — Inter body, printf() accented */}

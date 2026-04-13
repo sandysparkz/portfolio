@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { ArrowDown, ChevronRight, Cpu } from "lucide-react";
 import { FaGithub, FaLinkedin, FaGitlab, FaDiscord } from "react-icons/fa6";
 
@@ -32,7 +31,7 @@ export default function Hero() {
       <div className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24 sm:pt-32 sm:pb-32">
         <div className="max-w-2xl">
 
-          {/* Terminal eyebrow — only Share Tech Mono here */}
+          {/* Terminal eyebrow */}
           <p
             className="font-terminal text-xs sm:text-sm text-gray-600 mb-5 animate-fade-in"
             style={{ animationDelay: "0ms" }}
@@ -67,20 +66,27 @@ export default function Hero() {
             style={{ animationDelay: "220ms" }}
           >
             Specialising in{" "}
-            <span className="inline-code">Zephyr RTOS</span>{" "}
-            <span className="inline-code">Embedded Linux</span>{" "}
-            <span className="inline-code">c</span>.
+            <span className="inline-code">ZEPHYR RTOS</span>{" "}
+            <span className="inline-code">EMBEDDED LINUX</span>{" "}
+            <span className="inline-code">C</span>.
           </p>
 
-          {/* CTAs — use Next.js Link so basePath is respected */}
+          {/* CTAs — "Read the Blog" scrolls to #blog-teaser on the home page */}
           <div
             className="mt-9 flex flex-wrap items-center gap-3 animate-slide-up"
             style={{ animationDelay: "300ms" }}
           >
-            <Link href="/blog" className="btn-primary">
+            <a
+              href="#blog-teaser"
+              className="btn-primary"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("blog-teaser")?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+            >
               Read the Blog
               <ChevronRight className="w-4 h-4" />
-            </Link>
+            </a>
             <a href="#contact" className="btn-secondary">
               Get in Touch
             </a>
@@ -91,7 +97,7 @@ export default function Hero() {
             className="mt-10 flex items-center gap-2.5 animate-slide-up"
             style={{ animationDelay: "380ms" }}
           >
-            <span className="font-terminal text-[11px] text-gray-700 select-none mr-1">
+            <span className="font-terminal text-[13px] text-gray-700 select-none mr-1">
               find_me $
             </span>
             {socials.map((s) => (

@@ -5,11 +5,11 @@ import { usePathname } from "next/navigation";
 
 /* ── Tuning constants ─────────────────────────────────────── */
 const GRID       = 56;          // must match CSS --grid-size
-const COUNT      = 8;           // number of light particles
+const COUNT      = 4;           // number of light particles
 const MIN_SPEED  = 20;          // px/s (slow drift)
 const MAX_SPEED  = 50;
-const MIN_TRAIL  = 92;          // trail dot count
-const MAX_TRAIL  = 122;
+const MIN_TRAIL  = 150;          // trail dot count
+const MAX_TRAIL  = 200;
 
 interface Particle {
   x: number;

@@ -15,7 +15,7 @@ const highlights = [
     icon: Code2,
     title: "Low-Level Craft",
     titleColor: "text-blue-400",
-    desc: "C, bare-metal. Deterministic code with zero tolerance for undefined behaviour.",
+    desc: "C, bare-metal: Deterministic code with zero tolerance for undefined behaviour.",
   },
   {
     icon: Zap,
@@ -33,7 +33,7 @@ const highlights = [
     icon: Layers,
     title: "Full Stack Firmware",
     titleColor: "text-blue-400",
-    desc: "Bootloader, BSP, drivers, middleware, application — the full picture.",
+    desc: "Bootloader, BSP, Drivers, Middleware, Application, Security.",
   },
   {
     icon: HardDrive,
@@ -62,11 +62,11 @@ export default function About() {
         <div className="mb-14 sm:mb-16">
           <div className="section-label">
             <div className="section-label-line" />
-            <span className="section-label-text">About</span>
+            <span className="section-label-text">id -a</span>
           </div>
           {/* Uppercase section title */}
           <h2 className="section-title uppercase">About Me</h2>
-          <p className="section-subtitle">The developer behind the firmware.</p>
+          <p className="section-subtitle">Architecting embedded solutions</p>
         </div>
 
         <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
@@ -86,14 +86,14 @@ export default function About() {
                 <div className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
                 <div className="w-2.5 h-2.5 rounded-full bg-amber-500/70" />
                 <div className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
-                <span className="ml-2 font-terminal text-[10px] text-gray-600">about_me.md</span>
+                <span className="ml-2 font-terminal text-[12px] text-gray-600">about_me.md</span>
               </div>
 
               {/* Bio text — Inter, sentence case in paragraphs */}
               <div className="space-y-4 text-sm sm:text-base text-gray-400 leading-relaxed">
                 <p>
                   Embedded Software Engineer{" "}
-                  <span className="text-blue-400">@ Linumiz</span>, working at the intersection
+                  <span className="text-blue-400">@ Linumiz</span> working at the intersection
                   of bare-metal hardware and the Zephyr software stack.
                 </p>
 
@@ -113,7 +113,7 @@ export default function About() {
                       <span className="text-blue-400 mt-0.5 flex-shrink-0">•</span>
                       <span>
                         <span className="text-gray-200 font-semibold">Zephyr Subsystem:</span>{" "}
-                        Working across BLE, USB, LoRa, Modem (LTE/GNSS) subsystems in Zephyr.
+                        Working across BLE, USB, LoRa, Modem (LTE/GNSS), Modbus, FS subsystems in Zephyr.
                       </span>
                     </li>
                     <li className="flex items-start gap-2">
@@ -133,7 +133,7 @@ export default function About() {
                   </p>
                   <p className="text-sm text-gray-500">
                     ECE{" "}
-                    <span className="text-gray-300">@ Kumaraguru College of Technology</span>,
+                    <span className="text-gray-300">@ Kumaraguru College of Technology</span> -
                     2025 |{" "}
                     Schooling{" "}
                     <span className="text-gray-300">@ St. Paul&apos;s MHSS</span>
@@ -141,7 +141,7 @@ export default function About() {
                 </div>
 
                 <p className="text-sm text-gray-400 border-l-2 border-blue-500/40 pl-3">
-                  I also have high interests in{" "}
+                  Deeply interested in {" "}
                   <span className="text-emerald-400">NPU</span>,{" "}
                   <span className="text-emerald-400">Edge AI</span>, and{" "}
                   <span className="text-emerald-400">Machine Learning</span>.
@@ -171,8 +171,8 @@ export default function About() {
                   <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
                   <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
                 </div>
-                <span className="font-terminal text-[10px] text-gray-500 ml-1">
-                  bash | user@embedded | 80x24
+                <span className="font-terminal text-[12px] text-gray-500 ml-1">
+		#!/bin/bash | user@embedded
                 </span>
               </div>
 
@@ -189,12 +189,12 @@ export default function About() {
                   <div>
                     <span className="text-blue-300">FOCUS     </span>
                     <span className="text-gray-600"> = </span>
-                    <span className="text-amber-400">&quot;Drivers · BSP · application development&quot;</span>
+                    <span className="text-amber-400">&quot;Drivers · BSP · Application development&quot;</span>
                   </div>
                   <div>
                     <span className="text-blue-300">MINDSET   </span>
                     <span className="text-gray-600"> = </span>
-                    <span className="text-amber-400">&quot;Deterministic · Minimal · Correct&quot;</span>
+                    <span className="text-amber-400">&quot;Deterministic · Precise · Logical&quot;</span>
                   </div>
                   <div>
                     <span className="text-red-400">COMPLIANCE</span>
@@ -206,13 +206,13 @@ export default function About() {
                 <div className="mt-3">
                   <Prompt /><span className="text-gray-300">uname -m</span>
                 </div>
-                <div className="pl-2 text-emerald-400">32bit arm architecture</div>
+                <div className="pl-2 text-emerald-400">uin32_t ARM architecture</div>
 
                 <div>
                   <Prompt /><span className="text-gray-300">uptime --pretty</span>
                 </div>
                 <div className="pl-2 text-emerald-400">
-                  up <span className="text-white">1+ year</span> building firmware
+                  up <span className="text-white">2+ years</span> building firmware
                 </div>
 
                 <div>

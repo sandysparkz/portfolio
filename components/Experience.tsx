@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Calendar, ExternalLink, ArrowRight, Cable, Server, Bluetooth, Radio } from "lucide-react";
+import { Calendar, ExternalLink, ArrowRight, Cable, Server, Bluetooth, Radio, CircuitBoard } from "lucide-react";
 import { GLASS } from "./glassConfig";
 
 const projects = [
@@ -38,7 +38,7 @@ const projects = [
     tags: ["ZEPHYR", "DAC", "C"],
     description:
       "Adds support for the DAC module on TI MSPM0 G-Series MCUs. Supports 8-bit and 12-bit resolution configurable via driver APIs. Supports selecting the voltage reference source; external reference selectable via Kconfig.",
-    ProjectIcon: Bluetooth,
+    ProjectIcon: CircuitBoard,
     links: { github: "https://github.com/zephyrproject-rtos/zephyr/pull/94725" },
   },
 ];
@@ -55,7 +55,7 @@ export default function Experience() {
               <div className="section-label-line" />
               <span className="section-label-text">Projects</span>
             </div>
-            <h2 className="section-title uppercase">Experience &amp; Projects</h2>
+            <h2 className="section-title uppercase">Contributions &amp; Experience</h2>
             <p className="section-subtitle">
               A selection of embedded systems projects I&apos;ve built.
             </p>

@@ -30,9 +30,9 @@ const categories: Category[] = [
     skills: [
       { name: "Yocto Project", level: "proficient", Icon: Layers    },
       { name: "U-Boot",        level: "proficient", Icon: Server    },
-      { name: "OpenEmbedded",  level: "familiar",   Icon: Layers    },
       { name: "Linux Kernel",  level: "proficient", Icon: Server    },
       { name: "Device Tree",   level: "proficient", Icon: GitBranch },
+      { name: "OpenEmbedded",  level: "familiar",   Icon: Layers    },
     ],
   },
   {
@@ -68,7 +68,7 @@ const categories: Category[] = [
       { name: "Docker",          level: "proficient", Icon: Package   },
       { name: "GDB / JTAG",      level: "proficient", Icon: Bug       },
       { name: "CMake / Make",    level: "proficient", Icon: Wrench    },
-      { name: "CI / GH Actions", level: "familiar",   Icon: GitBranch },
+      { name: "CI-CD / GH Actions", level: "familiar",   Icon: GitBranch },
     ],
   },
 ];
@@ -109,8 +109,8 @@ export default function Skills() {
             <div className="section-label-line" />
             <span className="section-label-text">Skills</span>
           </div>
-          <h2 className="section-title uppercase">Skills &amp; Technologies</h2>
-          <p className="section-subtitle">The toolbox I reach for to bring embedded systems to life.</p>
+          <h2 className="section-title uppercase">Skills &amp; Tools</h2>
+          <p className="section-subtitle">The toolbox I reach for, to bring embedded systems to life.</p>
         </div>
 
         {/* Category tabs — uppercase */}
@@ -220,7 +220,7 @@ export default function Skills() {
                   },
                   {
                     badge: <span className="prof-badge-proficient"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />Proficient</span>,
-                    desc:  "Solid working knowledge, shipped projects",
+                    desc:  "Solid working knowledge, Hands on projects",
                   },
                   {
                     badge: <span className="prof-badge-familiar"><span className="w-1.5 h-1.5 rounded-full bg-gray-500" />Familiar</span>,
@@ -262,7 +262,7 @@ export default function Skills() {
               </div>
               <div className="mt-1.5 space-y-0.5">
                 <div className="text-emerald-400">Compilation successful.</div>
-                <div className="text-blue-400/70 text-[10px]">All modules resolved. Stack ready.</div>
+                <div className="text-blue-400/70 text-[10px]">All modules updated | Stack ready</div>
               </div>
               <div className="mt-1.5 text-gray-600">
                 <span className="text-green-400">$</span>{" "}
