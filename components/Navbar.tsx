@@ -23,14 +23,12 @@ export default function Navbar() {
   const pathname                          = usePathname();
   const router                            = useRouter();
 
-  /* ── Scroll shadow ── */
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  /* ── IntersectionObserver -- track active section ── */
   useEffect(() => {
     if (pathname !== "/") return;
     const obs: IntersectionObserver[] = [];
@@ -47,7 +45,6 @@ export default function Navbar() {
     return () => obs.forEach((o) => o.disconnect());
   }, [pathname]);
 
-  /* ── Smooth scroll handler ── */
   const handleNavClick = useCallback(
     (e: React.MouseEvent, link: (typeof navLinks)[number]) => {
       if (!link.section) return;
