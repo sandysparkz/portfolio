@@ -69,7 +69,7 @@ Read more: https://nextjs.org/docs/messages/next-image-unconfigured-localpattern
 
       <h2>Takeaway</h2>
       <p>Beyond the toolchain, the program reinforced a clear framework for turning raw data into decisions: scope the question, pick the right cut of the data, pick the right chart, and keep the narrative honest. That framework carries over directly into any role that touches data, including firmware telemetry and test-log analysis on the embedded side.</p>
-    `,links:{credly:"#",project:{label:"View on Tableau Public",href:"https://public.tableau.com/app/profile/santhosh.c.c/viz/CO2EMISSIONPERCAPITA_17119095130390/Sheet1"}}},{slug:"zephyr-technical-contributor",title:"Zephyr Technical Contributor",issuer:"Zephyr Project / Linux Foundation",date:"2024",tags:["ZEPHYR","RTOS","OPEN SOURCE"],description:"Recognition from the Zephyr Project for accepted technical contributions to the upstream Zephyr RTOS codebase, including driver support and subsystem work.",excerpt:"Recognition from the Zephyr Project for upstream contributions to Zephyr RTOS.",badge:"/certs/zephyr-technical-contributor.png",CertIcon:n.Layers,content:`
+    `,links:{credly:"#",project:{label:"View on Tableau Public",href:"https://public.tableau.com/app/profile/santhosh.c.c/viz/CO2EMISSIONPERCAPITA_17119095130390/Sheet1"}}},{slug:"zephyr-technical-contributor",title:"Zephyr Technical Contributor",issuer:"Zephyr Project / Linux Foundation",date:"2026",tags:["ZEPHYR","RTOS","OPEN SOURCE"],description:"Recognition from the Zephyr Project for accepted technical contributions to the upstream Zephyr RTOS codebase, including driver support and subsystem work.",excerpt:"Recognition from the Zephyr Project for upstream contributions to Zephyr RTOS.",badge:"/certs/zephyr-technical-contributor.png",CertIcon:n.Layers,content:`
       <p>The <strong>Zephyr Technical Contributor</strong> badge is awarded by the Zephyr Project for accepted technical contributions to the upstream Zephyr RTOS codebase.</p>
 
       <h2>Contributions Behind The Badge</h2>
@@ -91,7 +91,7 @@ Read more: https://nextjs.org/docs/messages/next-image-unconfigured-localpattern
 
       <h2>Outcome</h2>
       <p>Completion earned the Linux Foundation LFD103 certificate. The credential is available via the link below.</p>
-    `,links:{credly:"#",credential:"#"}},{slug:"lfd110-riscv",title:"LFD110: Introduction to RISC-V",issuer:"The Linux Foundation",date:"2024",tags:["RISC-V","ISA","LINUX FOUNDATION"],description:"Linux Foundation course covering the RISC-V instruction set architecture: base integer ISA, standard extensions, privilege levels, memory model, and the open ecosystem around RISC-V.",excerpt:"Linux Foundation LFD110 course on the RISC-V ISA, extensions, privilege model and ecosystem.",badge:"/certs/lfd110-riscv.png",CertIcon:i.Cpu,content:`
+    `,links:{credly:"#",credential:"#"}},{slug:"lfd110-riscv",title:"LFD110: Introduction to RISC-V",issuer:"The Linux Foundation",date:"2026",tags:["RISC-V","ISA","LINUX FOUNDATION"],description:"Linux Foundation course covering the RISC-V instruction set architecture: base integer ISA, standard extensions, privilege levels, memory model, and the open ecosystem around RISC-V.",excerpt:"Linux Foundation LFD110 course on the RISC-V ISA, extensions, privilege model and ecosystem.",badge:"/certs/lfd110-riscv.png",CertIcon:i.Cpu,content:`
       <p><strong>LFD110: Introduction to RISC-V</strong> is a Linux Foundation course that covers the RISC-V instruction set architecture end to end. RISC-V is a free and open ISA that has been picking up serious traction across embedded, automotive and HPC.</p>
 
       <h2>Topics Covered</h2>
@@ -102,7 +102,7 @@ Read more: https://nextjs.org/docs/messages/next-image-unconfigured-localpattern
 
       <h2>Outcome</h2>
       <p>Completion earned the Linux Foundation LFD110 certificate. The credential itself is available via the Credly link below.</p>
-    `,links:{credly:"#",credential:"#"}},{slug:"edge-ai-course",title:"Edge AI Course",issuer:"[Issuer placeholder]",date:"2024",tags:["EDGE AI","ML","EMBEDDED"],description:"Course covering the fundamentals of deploying machine learning models on resource-constrained edge devices: model optimisation, quantisation, and on-device inference.",excerpt:"Course on deploying ML models at the edge: optimisation, quantisation and on-device inference.",badge:"/certs/edge-ai.png",CertIcon:a,content:`
+    `,links:{credly:"#",credential:"#"}},{slug:"edge-ai-course",title:"Edge AI Course",issuer:"[Issuer placeholder]",date:"2026",tags:["EDGE AI","ML","EMBEDDED"],description:"Course covering the fundamentals of deploying machine learning models on resource-constrained edge devices: model optimisation, quantisation, and on-device inference.",excerpt:"Course on deploying ML models at the edge: optimisation, quantisation and on-device inference.",badge:"/certs/edge-ai.png",CertIcon:a,content:`
       <p>Course covering <strong>Edge AI</strong>: the set of techniques and tradeoffs involved in running machine learning models on resource constrained devices rather than in the cloud.</p>
 
       <h2>Topics Covered</h2>
