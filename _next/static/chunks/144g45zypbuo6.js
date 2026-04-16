@@ -4,12 +4,12 @@ Read more: https://nextjs.org/docs/messages/next-image-unconfigured-localpattern
       <p>Google's <strong>Data Analytics Professional Certificate</strong> is an eight-course program delivered via Coursera. It covers the full analyst workflow: asking the right questions, preparing and cleaning data, performing analysis, and communicating findings through visualisation.</p>
 
       <h2>What Was Covered</h2>
-      <p>The program walks through spreadsheets, SQL for querying relational data, statistical thinking, R for data cleaning and analysis, and Tableau for visual storytelling. Each course ends with a hands-on assignment grounded in realistic business scenarios.</p>
+      <p>The program walks through spreadsheets, <strong>SQL</strong> for querying relational data, statistical thinking, <strong>R</strong> for data cleaning and analysis, and <strong>Tableau</strong> for visual storytelling. Each course ends with a hands-on assignment grounded in realistic business scenarios.</p>
 
       <h2>Capstone Project: CO2 Emissions Per Capita</h2>
-      <p>As part of the certification I built a Tableau visualisation exploring <strong>CO2 emissions per capita from 2000 to 2010</strong>, with values expressed in metric tons. The goal was to surface regional disparities in emissions and put the figures into context.</p>
+      <p>As part of the certification I built a Tableau visualisation exploring <code>CO2 emissions per capita from 2000 to 2010</code>, with values expressed in metric tons. The goal was to surface regional disparities in emissions and put the figures into context.</p>
 
-      <p>One finding that stood out: India remained one of the lower per-capita emitters over that decade despite its population size and a rapidly growing economy. The visualisation is a refined version of an earlier draft, with cleaner encoding and clearer annotations to let the data speak.</p>
+      <p>One finding that stood out: India remained one of the <strong>lower per-capita emitters</strong> over that decade despite its population size and a rapidly growing economy. The visualisation is a refined version of an earlier draft, with cleaner encoding and clearer annotations to let the data speak.</p>
 
       <h2>Takeaway</h2>
       <p>Beyond the toolchain, the program reinforced a clear framework for turning raw data into decisions: scope the question, pick the right cut of the data, pick the right chart, and keep the narrative honest. That framework carries over directly into any role that touches data, including firmware telemetry and test-log analysis on the embedded side.</p>
