@@ -5,7 +5,7 @@
       <p>Zephyr's USB host stack previously had no support for CDC ECM, meaning embedded hosts could not communicate with USB-to-Ethernet adapters or devices that expose an ECM network interface. This PR closes that gap.</p>
 
       <h2>What Was Added</h2>
-      <p>The implementation covers the full ECM host class driver lifecycle: device enumeration and interface binding, control transfer setup (SET_ETHERNET_MULTICAST_FILTERS, SET_ETHERNET_PACKET_FILTER), bulk endpoint management for data transfers, and netdev integration so the ECM interface is exposed as a standard network device to the Zephyr net stack.</p>
+      <p>The implementation covers the full ECM host class driver lifecycle: device enumeration and interface binding, control transfer setup <code>(SET_ETHERNET_MULTICAST_FILTERS, SET_ETHERNET_PACKET_FILTER)</code>, bulk endpoint management for data transfers, and netdev integration so the ECM interface is exposed as a standard network device to the Zephyr net stack.</p>
 
       <h2>Technical Details</h2>
       <p>The driver follows Zephyr's USB host class driver API, registering with the host stack via <code>USB_HOST_CLASS_DRIVER_DEFINE</code>. Data transfer is handled through bulk IN/OUT endpoints with double-buffering for throughput. The control path adheres to the CDC ECM specification (USB ECM subclass, class code 0x02).</p>
@@ -13,10 +13,10 @@
       <h2>Pull Request</h2>
       <p>The full diff, review comments, and CI status are available on the Zephyr GitHub repository linked above.</p>
     `,ProjectIcon:t.Cable,links:{github:"https://github.com/zephyrproject-rtos/zephyr/pull/99097"}},{slug:"mcan-driver-mspm0",title:"MCAN Driver for MSPM0 G-Series",date:"2026",tags:["zephyr","can","c"],description:"Introduces driver support for the MCAN (CAN FD and classic CAN) module on TI MSPM0 G-Series microcontrollers. Supports both classic CAN and CAN FD protocols, enabling flexible CAN communication.",excerpt:"Full-featured MCAN driver for TI MSPM0 G-Series MCUs in Zephyr RTOS, supporting both classic CAN and CAN FD.",content:`
-      <p>This PR introduces a Zephyr driver for the <strong>MCAN (Message-based Controller Area Network)</strong> module present on TI's MSPM0 G-Series microcontrollers. The driver supports both <strong>classic CAN</strong> (ISO 11898-1) and <strong>CAN FD</strong> (ISO 11898-2) operation modes.</p>
+      <p>This PR introduces a Zephyr driver for the <strong>MCAN (Modular Controller Area Network)</strong> module present on TI's MSPM0 G-Series microcontrollers. The driver supports both <strong>classic CAN</strong> (ISO 11898-1) and <strong>CAN FD</strong> (ISO 11898-2) operation modes.</p>
 
       <h2>Motivation</h2>
-      <p>The MSPM0 G-Series is TI's low-power Arm Cortex-M0+ MCU family. Prior to this PR, no Zephyr CAN driver existed for this SoC series, making it unavailable for CAN-based industrial or automotive applications running Zephyr.</p>
+      <p>The MSPM0 G-Series is TI's low-power <strong>Arm Cortex-M0+</strong> MCU family. This PR helps with the integration of CAN-based industrial or automotive applications running Zephyr.</p>
 
       <h2>Features</h2>
       <p>The driver implements the full Zephyr CAN controller API including: frame transmission (classic and FD modes), frame reception with hardware message filtering, error state reporting (error passive, bus-off detection and recovery), loopback mode for testing, and runtime bitrate configuration.</p>
@@ -25,21 +25,21 @@
       <p>New DTS bindings are included for the MSPM0 MCAN peripheral, allowing board-level configuration of the CAN controller, its clock source, interrupt routing, and GPIO pin assignments via standard Zephyr devicetree mechanisms.</p>
 
       <h2>Testing</h2>
-      <p>The driver was validated against Zephyr's CAN conformance test suite on real MSPM0G hardware with a PEAK USB-CAN adapter as the test peer.</p>
+      <p>The driver was validated against Zephyr's CAN conformance test suite on real MSPM0G hardware with a CAN transceiver adapter with test peer.</p>
     `,ProjectIcon:a.Radio,links:{github:"https://github.com/zephyrproject-rtos/zephyr/pull/97092"}},{slug:"spi-driver-mspm0",title:"SPI Driver for MSPM0 Series",date:"2026",tags:["zephyr","spi","c"],description:"Adds SPI driver support for TI MSPM0 microcontrollers. Implements SPI master mode with configurable frame size (4-16 bits), clock polarity, phase, and bit order. Integrates with Zephyr's SPI subsystem with standard API compliance.",excerpt:"SPI master driver for TI MSPM0 series in Zephyr, with configurable frame size, CPOL/CPHA, and bit order.",content:`
       <p>This contribution adds a <strong>SPI master mode driver</strong> for TI's MSPM0 microcontroller series to Zephyr RTOS. The MSPM0 SPI peripheral is based on a standard SSI (Synchronous Serial Interface) controller with a number of configurable parameters.</p>
 
       <h2>Supported Configuration</h2>
-      <p>The driver supports the full Zephyr SPI API configuration surface: frame sizes from 4 to 16 bits, all four SPI modes (CPOL 0/1 \xd7 CPHA 0/1), MSB-first and LSB-first bit ordering, software chip-select control via GPIO, and half-duplex operation for 3-wire SPI buses.</p>
+      <p>The driver supports the full Zephyr SPI API configuration surface: frame sizes from <strong>4 to 16</strong> bits, all four SPI modes <strong> (CPOL 0/1 \xd7 CPHA 0/1)</strong>, MSB-first and LSB-first bit ordering, software chip-select control via GPIO, and half-duplex operation for 3-wire SPI buses.</p>
 
       <h2>Implementation Notes</h2>
-      <p>Transfers are interrupt-driven with configurable FIFO thresholds to balance latency and CPU overhead. The driver registers as a standard Zephyr SPI controller device, making it immediately usable with any existing Zephyr SPI peripheral driver (sensors, displays, flash, etc.) without changes to those drivers.</p>
+      <p>Transfers are driven with configurable FIFO thresholds to balance latency and CPU overhead. The driver registers as a standard <strong>Zephyr SPI controller</strong> device, making it immediately usable with any existing Zephyr SPI peripheral driver (sensors, displays, flash, etc.) without changes to those drivers.</p>
 
       <h2>Devicetree Integration</h2>
       <p>New DTS bindings define the MSPM0 SPI node properties including peripheral base address, clock source, baud rate divisor, and pinctrl entries. Example board overlays are included in the PR for reference.</p>
 
       <h2>Validation</h2>
-      <p>Validated using Zephyr's SPI loopback test and with a real SPI flash device (Winbond W25Q) on MSPM0 LaunchPad hardware.</p>
+      <p>Validated using Zephyr's SPI loopback test and with a real SPI flash device on MSPM0 LaunchPad hardware.</p>
     `,ProjectIcon:r.Server,links:{github:"https://github.com/zephyrproject-rtos/zephyr/pull/94726"}},{slug:"dac-driver-mspm0",title:"DAC Driver for MSPM0 G-Series",date:"2026",tags:["zephyr","dac","c"],description:"Adds support for the DAC module on TI MSPM0 G-Series MCUs. Supports 8-bit and 12-bit resolution configurable via driver APIs. Supports selecting the voltage reference source; external reference selectable via Kconfig.",excerpt:"8/12-bit DAC driver for TI MSPM0 G-Series in Zephyr, with configurable voltage reference and Kconfig integration.",content:`
       <p>This PR adds a Zephyr driver for the <strong>DAC (Digital-to-Analog Converter)</strong> module on TI MSPM0 G-Series MCUs. The MSPM0 DAC supports both 8-bit and 12-bit output resolution and can source its reference from the internal bandgap or an external VREF pin.</p>
 
