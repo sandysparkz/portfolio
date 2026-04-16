@@ -53,7 +53,7 @@ export default function Experience() {
           <div>
             <div className="section-label">
               <div className="section-label-line" />
-              <span className="section-label-text">Projects</span>
+              <span className="section-label-text lowercase">ls -la projects</span>
             </div>
             <h2 className="section-title uppercase">Contributions &amp; Experience</h2>
             <p className="section-subtitle">

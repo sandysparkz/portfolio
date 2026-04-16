@@ -62,7 +62,7 @@ export default function About() {
         <div className="mb-14 sm:mb-16">
           <div className="section-label">
             <div className="section-label-line" />
-            <span className="section-label-text">id -a</span>
+            <span className="section-label-text lowercase">init_sequence</span>
           </div>
           {/* Uppercase section title */}
           <h2 className="section-title uppercase">About Me</h2>

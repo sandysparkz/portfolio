@@ -54,9 +54,9 @@ const categories: Category[] = [
     skills: [
       { name: "Zephyr Drivers",               level: "expert",     Icon: Cpu      },
       { name: "Zephyr application development", level: "expert",   Icon: Cpu      },
-      { name: "Kconfig / menuconfig",          level: "expert"                    },
-      { name: "West Build System",             level: "expert"                    },
-      { name: "Devicetree (DTS)",              level: "expert"                    },
+      { name: "Kconfig / menuconfig",          level: "expert",    Icon: Package  },
+      { name: "West Build System",             level: "expert",  Icon: Wrench     },
+      { name: "Devicetree (DTS)",              level: "expert",  Icon: GitBranch  },
       { name: "Zephyr USB Stack",              level: "proficient", Icon: Cable   },
       { name: "Zephyr BLE Stack",              level: "proficient", Icon: Bluetooth },
     ],
@@ -107,7 +107,7 @@ export default function Skills() {
         <div className="mb-12 sm:mb-14">
           <div className="section-label">
             <div className="section-label-line" />
-            <span className="section-label-text">Skills</span>
+            <span className="section-label-text lowercase">{"#include <skills.h>"}</span>
           </div>
           <h2 className="section-title uppercase">Skills &amp; Tools</h2>
           <p className="section-subtitle">The toolbox I reach for, to bring embedded systems to life.</p>

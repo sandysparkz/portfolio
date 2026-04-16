@@ -9,6 +9,8 @@ import TronGrid from "@/components/TronGrid";
 // SITE IDENTITY - change these to update the browser tab name,
 // description, and favicon across the whole site.
 // ──────────────────────────────────────────────────────────────
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const metadata: Metadata = {
   title: "Sandy | Embedded Software Engineer",
   description:
@@ -25,10 +27,10 @@ export const metadata: Metadata = {
   ],
   icons: {
     icon: [
-      { url: "/favicon.png", type: "image/png", sizes: "64x64" },
-      { url: "/icon-256.png", type: "image/png", sizes: "256x256" },
+      { url: `${basePath}/favicon.png`, type: "image/png", sizes: "64x64" },
+      { url: `${basePath}/icon-256.png`, type: "image/png", sizes: "256x256" },
     ],
-    apple: "/icon-256.png",
+    apple: `${basePath}/icon-256.png`,
   },
 };
 
