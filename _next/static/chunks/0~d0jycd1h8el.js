@@ -11,7 +11,7 @@
       <p>The driver follows Zephyr's USB host class driver API, registering with the host stack via <code>USB_HOST_CLASS_DRIVER_DEFINE</code>. Data transfer is handled through bulk IN/OUT endpoints with double-buffering for throughput. The control path adheres to the CDC ECM specification (USB ECM subclass, class code 0x02).</p>
 
       <h2>Pull Request</h2>
-      <p>The full diff, review comments, and CI status are available on the Zephyr GitHub repository linked above.</p>
+      <p>The implementation, review comments, and CI status are available on the Zephyr GitHub repository linked above.</p>
     `,ProjectIcon:t.Cable,links:{github:"https://github.com/zephyrproject-rtos/zephyr/pull/99097"}},{slug:"mcan-driver-mspm0",title:"MCAN Driver for MSPM0 G-Series",date:"2026",tags:["zephyr","can","c"],description:"Introduces driver support for the MCAN (CAN FD and classic CAN) module on TI MSPM0 G-Series microcontrollers. Supports both classic CAN and CAN FD protocols, enabling flexible CAN communication.",excerpt:"Full-featured MCAN driver for TI MSPM0 G-Series MCUs in Zephyr RTOS, supporting both classic CAN and CAN FD.",content:`
       <p>This PR introduces a Zephyr driver for the <strong>MCAN (Modular Controller Area Network)</strong> module present on TI's MSPM0 G-Series microcontrollers. The driver supports both <strong>classic CAN</strong> (ISO 11898-1) and <strong>CAN FD</strong> (ISO 11898-2) operation modes.</p>
 
