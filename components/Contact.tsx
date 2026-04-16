@@ -8,22 +8,22 @@ const socials = [
   {
     icon: Mail,
     label: "Email",
-    handle: "you@email.com",
-    href: "mailto:you@email.com",
+    handle: "santhosh@linumiz.com",
+    href: "mailto:santhosh@linumiz.com",
     desc: "Preferred for project enquiries & collaboration",
   },
   {
     icon: FaGithub,
     label: "GitHub",
-    handle: "@sandys",
-    href: "https://github.com/sandys",
+    handle: "@sandthosh-c-c",
+    href: "https://github.com/santhosh-c-c",
     desc: "Open source projects & contributions",
   },
   {
     icon: FaLinkedin,
     label: "LinkedIn",
-    handle: "@yourprofile",
-    href: "https://linkedin.com/in/yourprofile",
+    handle: "@santhosh-c-c",
+    href: "https://linkedin.com/in/santhosh-c-c",
     desc: "Professional profile & career history",
   },
 ];
@@ -41,8 +41,8 @@ export default function Contact() {
             <div className="section-label-line" />
           </div>
           <h2 className="section-title text-center mx-auto uppercase">Get In Touch</h2>
-          <p className="section-subtitle text-center mx-auto">
-            Reach out via any platform below. I&apos;m most responsive over email.
+          <p className="section-subtitle text-center mx-auto uppercase">
+            Reach out via any platform below | I&apos;m most responsive over email
           </p>
         </div>
 

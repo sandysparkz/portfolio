@@ -33,7 +33,7 @@ const highlights = [
     icon: Layers,
     title: "Full Stack Firmware",
     titleColor: "text-blue-400",
-    desc: "Bootloader, BSP, Drivers, Middleware, Application, Security.",
+    desc: "Bootloader, BSP, Drivers, Device Tree, HAL, Middleware, Application, Security.",
   },
   {
     icon: HardDrive,
@@ -66,7 +66,7 @@ export default function About() {
           </div>
           {/* Uppercase section title */}
           <h2 className="section-title uppercase">About Me</h2>
-          <p className="section-subtitle">Architecting embedded solutions</p>
+          <p className="section-subtitle uppercase">Architecting embedded solutions</p>
         </div>
 
         <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">

@@ -4,10 +4,10 @@ import { ArrowDown, ChevronRight, Cpu } from "lucide-react";
 import { FaGithub, FaLinkedin, FaGitlab, FaDiscord } from "react-icons/fa6";
 
 const socials = [
-  { icon: FaLinkedin, href: "https://linkedin.com/in/yourprofile", label: "LinkedIn" },
-  { icon: FaGithub,   href: "https://github.com/sandys",           label: "GitHub"   },
-  { icon: FaGitlab,   href: "https://gitlab.com/yourusername",     label: "GitLab"   },
-  { icon: FaDiscord,  href: "https://discord.com/users/yourid",    label: "Discord"  },
+  { icon: FaLinkedin, href: "www.linkedin.com/in/santhosh-c-c", label: "LinkedIn" },
+  { icon: FaGithub,   href: "https://github.com/santhosh-c-c", label: "GitHub"   },
+  { icon: FaGitlab,   href: "https://gitlab.com/ccsanthosh1231",     label: "GitLab"   },
+  { icon: FaDiscord,  href: "https://discord.com/users/santhoshcc",    label: "Discord"  },
 ];
 
 export default function Hero() {

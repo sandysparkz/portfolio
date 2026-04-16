@@ -110,7 +110,7 @@ export default function Skills() {
             <span className="section-label-text lowercase">{"#include <skills.h>"}</span>
           </div>
           <h2 className="section-title uppercase">Skills &amp; Tools</h2>
-          <p className="section-subtitle">The toolbox I reach for, to bring embedded systems to life.</p>
+          <p className="section-subtitle uppercase">The toolbox I reach for, to bring embedded systems to life</p>
         </div>
 
         {/* Category tabs — uppercase */}

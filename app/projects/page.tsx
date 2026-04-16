@@ -50,7 +50,7 @@ export default function ProjectsPage() {
         <div className="mb-12 sm:mb-14">
           <div className="section-label">
             <div className="section-label-line" />
-            <span className="section-label-text">ls -la ./projects</span>
+            <span className="section-label-text lowercase">ls -la ./projects</span>
           </div>
           <h2 className="section-title uppercase">All Projects</h2>
           <p className="section-subtitle">

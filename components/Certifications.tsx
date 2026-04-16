@@ -18,11 +18,11 @@ export default function Certifications() {
           <div>
             <div className="section-label">
               <div className="section-label-line" />
-              <span className="section-label-text">Certifications</span>
+              <span className="section-label-text lowercase">printf(certifications)</span>
             </div>
             <h2 className="section-title uppercase">Licenses &amp; Badges</h2>
-            <p className="section-subtitle">
-              Collection of badges earned across various learnings.
+            <p className="section-subtitle uppercase">
+              Collection of badges earned across various learnings
             </p>
           </div>
           <Link

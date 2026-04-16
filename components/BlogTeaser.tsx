@@ -13,11 +13,11 @@ export default function BlogTeaser() {
           <div>
             <div className="section-label">
               <div className="section-label-line" />
-              <span className="section-label-text">Blog</span>
+              <span className="section-label-text lowercase">display_blog()</span>
             </div>
-            <h2 className="section-title">Recent Posts</h2>
-            <p className="section-subtitle">
-              Writings on embedded systems, firmware, and low-level engineering.
+            <h2 className="section-title uppercase">Recent Posts</h2>
+            <p className="section-subtitle uppercase">
+              Writings on embedded systems, firmware, and low-level engineering
             </p>
           </div>
           <a

@@ -40,7 +40,7 @@ export default function CertificationsListingPage() {
         <div className="mb-10 sm:mb-14">
           <div className="section-label">
             <div className="section-label-line" />
-            <span className="section-label-text">Certifications</span>
+            <span className="section-label-text lowercase">printf(certifications)</span>
           </div>
           <h1 className="section-title uppercase">Licenses &amp; Badges</h1>
           <p className="section-subtitle max-w-2xl">

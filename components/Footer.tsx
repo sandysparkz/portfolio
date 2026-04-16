@@ -14,10 +14,10 @@ const navLinks = [
 ];
 
 const socials = [
-  { icon: FaGithub,   href: "https://github.com/sandys",              label: "GitHub"   },
-  { icon: FaLinkedin, href: "https://linkedin.com/in/yourprofile",    label: "LinkedIn" },
-  { icon: FaGitlab,   href: "https://gitlab.com/yourusername",        label: "GitLab"   },
-  { icon: FaDiscord,  href: "#",                                      label: "Discord"  },
+  { icon: FaGithub,   href: "https://github.com/santhosh-c-c",              label: "GitHub"   },
+  { icon: FaLinkedin, href: "https://linkedin.com/in/santhos-c-c",    label: "LinkedIn" },
+  { icon: FaGitlab,   href: "https://gitlab.com/ccsanthosh1231",        label: "GitLab"   },
+  { icon: FaDiscord,  href: "https://discord.com/users/santhoshcc",   label: "Discord"  },
 ];
 
 export default function Footer() {
@@ -134,7 +134,7 @@ export default function Footer() {
         >
           {/* Copyright — Inter body font, distinct teal color */}
           <p className="text-[11px] text-teal-700/60 tracking-wide">
-            &copy; {new Date().getFullYear()} Santhosh. All rights reserved.
+            &copy; {new Date().getFullYear()} SANTHOSH. All rights reserved.
           </p>
 
           {/* Built with — Inter body, printf() accented */}
