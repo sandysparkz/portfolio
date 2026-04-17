@@ -24,9 +24,117 @@ export interface Certification {
 /**
  * Home page shows the first 4 entries (see getRecentCerts).
  * Full listing at /certifications shows everything.
- * To hide a cert from the home teaser, move it past the 4th slot.
+ *
+ * ORDER: zephyr → lfd103 → lfd110 → google → edge-ai
+ *
+ * HOW TO ADD CREDLY LINKS:
+ *   1. Go to your Credly profile and open the badge.
+ *   2. Copy the URL from the browser, e.g.:
+ *        https://www.credly.com/badges/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+ *   3. Replace the "#" below in the `credly` field with that URL.
  */
 export const certifications: Certification[] = [
+  // ─── 1. Zephyr Technical Contributor ────────────────────────────────────
+  {
+    slug: "zephyr-technical-contributor",
+    title: "Zephyr Technical Contributor",
+    issuer: "Zephyr Project / Linux Foundation",
+    date: "2026",
+    tags: ["ZEPHYR", "RTOS", "OPEN SOURCE"],
+    description:
+      "Recognition from the Zephyr Project for accepted technical contributions to the upstream Zephyr RTOS codebase, including driver support and subsystem work.",
+    excerpt:
+      "Recognition from the Zephyr Project for upstream contributions to Zephyr RTOS.",
+    badge: "/certs/zephyr-technical-contributor.png",
+    CertIcon: Layers,
+    content: `
+      <p>The <strong>Zephyr Technical Contributor</strong> badge is awarded by the Zephyr Project for accepted technical contributions to the upstream Zephyr RTOS codebase.</p>
+
+      <h2>Contributions Behind The Badge</h2>
+      <p>The contributions covered by this recognition include driver additions for TI MSPM0 peripherals (SPI, DAC, MCAN), and work on the USB host subsystem to add CDC ECM class support. Each contribution went through Zephyr's standard review process, including devicetree bindings, Kconfig integration, documentation and test validation.</p>
+
+      <h2>Why Upstream?</h2>
+      <p>Landing work upstream rather than keeping it as out-of-tree patches means the code benefits from the project's CI, static analysis, and broad community review, and it keeps future rebases cheap. It is also the most honest test of a driver: if it holds up to review from the Zephyr maintainers, it is probably solid.</p>
+
+      <h2>Links</h2>
+      <p>Individual pull requests are listed on the <a href="/projects">Projects</a> page. The badge itself is available via the Credly link below.</p>
+    `,
+    links: {
+      // 🔗 Replace "#" with your Credly badge URL:
+      // e.g. "https://www.credly.com/badges/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+      credly: "https://www.credly.com/badges/5cecac8f-f029-439c-88d0-bf0ec445af13/public_url",
+    },
+  },
+
+  // ─── 2. LFD103 — Linux Kernel Development ───────────────────────────────
+  {
+    slug: "lfd103-linux-kernel",
+    title: "LFD103: A Beginner's Guide to Linux Kernel Development",
+    issuer: "The Linux Foundation",
+    date: "2026",
+    tags: ["LINUX KERNEL", "LINUX FOUNDATION", "C"],
+    description:
+      "Linux Foundation course introducing the fundamentals of Linux kernel development: kernel source layout, build system, patch workflow, coding style, and the upstream contribution process.",
+    excerpt:
+      "Linux Foundation LFD103 course on the basics of Linux kernel development and upstream contribution.",
+    badge: "/certs/lfd103-linux-kernel.png",
+    CertIcon: Terminal,
+    content: `
+      <p><strong>LFD103: A Beginner's Guide to Linux Kernel Development</strong> is a Linux Foundation course that introduces the fundamentals of getting started with the Linux kernel, from cloning the tree to sending a first patch upstream.</p>
+
+      <h2>Topics Covered</h2>
+      <p>The course walks through the kernel source layout, the kbuild and Kconfig build systems, the patch workflow using git send-email, the kernel coding style and checkpatch tooling, and the social conventions of the LKML and subsystem maintainer trees. It also covers the basics of configuring and building a kernel for a local machine or emulator and testing changes there.</p>
+
+      <h2>Why It Matters</h2>
+      <p>Most embedded Linux work eventually touches the kernel, whether that is writing a new device driver, fixing a bug in an existing subsystem, or simply making sense of what a board vendor's BSP actually does. Knowing how the upstream process works, even for small patches, makes the out-of-tree vs in-tree tradeoff a real decision rather than a default.</p>
+
+      <h2>Outcome</h2>
+      <p>Completion earned the Linux Foundation LFD103 certificate. The credential is available via the link below.</p>
+    `,
+    links: {
+      // 🔗 Replace "#" with your Credly badge URL:
+      // e.g. "https://www.credly.com/badges/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+      credly: "https://www.credly.com/badges/3fffff5a-06ef-4cb9-b3de-10e3464982fc/public_url",
+      // 🔗 Replace "#" with your Linux Foundation credential/certificate URL
+      credential: "https://www.credly.com/badges/3fffff5a-06ef-4cb9-b3de-10e3464982fc/public_url",
+    },
+  },
+
+  // ─── 3. LFD110 — RISC-V ─────────────────────────────────────────────────
+  {
+    slug: "lfd110-riscv",
+    title: "LFD110: Introduction to RISC-V",
+    issuer: "The Linux Foundation",
+    date: "2026",
+    tags: ["RISC-V", "ISA", "LINUX FOUNDATION"],
+    description:
+      "Linux Foundation course covering the RISC-V instruction set architecture: base integer ISA, standard extensions, privilege levels, memory model, and the open ecosystem around RISC-V.",
+    excerpt:
+      "Linux Foundation LFD110 course on the RISC-V ISA, extensions, privilege model and ecosystem.",
+    badge: "/certs/lfd110-riscv.png",
+    CertIcon: Cpu,
+    content: `
+      <p><strong>LFD110: Introduction to RISC-V</strong> is a Linux Foundation course that covers the RISC-V instruction set architecture end to end. RISC-V is a free and open ISA that has been picking up serious traction across embedded, automotive and HPC.</p>
+
+      <h2>Topics Covered</h2>
+      <p>The course walks through the base integer ISA (RV32I / RV64I), standard extensions (M, A, F, D, C, V), privilege levels (M, S, U), the memory and atomics model, and the overall ecosystem of cores, toolchains and organisations around RISC-V.</p>
+
+      <h2>Why It Matters For Embedded Work</h2>
+      <p>RISC-V is increasingly showing up in microcontroller silicon, and getting the fundamentals right at the ISA level makes it much easier to reason about what a Zephyr or bare-metal port is actually doing under the hood. Understanding the privilege model and trap handling in particular is directly useful when wiring up exception vectors and context-switch code.</p>
+
+      <h2>Outcome</h2>
+      <p>Completion earned the Linux Foundation LFD110 certificate. The credential itself is available via the Credly link below.</p>
+    `,
+    links: {
+      // 🔗 Replace "#" with your Credly badge URL:
+      // e.g. "https://www.credly.com/badges/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+      credly: "https://www.credly.com/badges/56474361-27f7-416d-bf10-5eb473e0a054/public_url",
+      // 🔗 Replace "#" with your Linux Foundation credential/certificate URL
+      credential: "https://www.credly.com/badges/56474361-27f7-416d-bf10-5eb473e0a054/public_url",
+    },
+  },
+
+  // ─── 4. Google Data Analytics ────────────────────────────────────────────
   {
     slug: "google-data-analytics",
     title: "Google Data Analytics Professional Certificate",
@@ -54,99 +162,17 @@ export const certifications: Certification[] = [
       <p>Beyond the toolchain, the program reinforced a clear framework for turning raw data into decisions: scope the question, pick the right cut of the data, pick the right chart, and keep the narrative honest. That framework carries over directly into any role that touches data, including firmware telemetry and test-log analysis on the embedded side.</p>
     `,
     links: {
-      credly: "#",
+      // 🔗 Replace "#" with your Credly badge URL:
+      // e.g. "https://www.credly.com/badges/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+      credly: "https://www.credly.com/badges/e4da1355-c09c-47b7-a36d-305b5ce0253a/public_url",
       project: {
         label: "View on Tableau Public",
         href: "https://public.tableau.com/app/profile/santhosh.c.c/viz/CO2EMISSIONPERCAPITA_17119095130390/Sheet1",
       },
     },
   },
-  {
-    slug: "zephyr-technical-contributor",
-    title: "Zephyr Technical Contributor",
-    issuer: "Zephyr Project / Linux Foundation",
-    date: "2026",
-    tags: ["ZEPHYR", "RTOS", "OPEN SOURCE"],
-    description:
-      "Recognition from the Zephyr Project for accepted technical contributions to the upstream Zephyr RTOS codebase, including driver support and subsystem work.",
-    excerpt:
-      "Recognition from the Zephyr Project for upstream contributions to Zephyr RTOS.",
-    badge: "/certs/zephyr-technical-contributor.png",
-    CertIcon: Layers,
-    content: `
-      <p>The <strong>Zephyr Technical Contributor</strong> badge is awarded by the Zephyr Project for accepted technical contributions to the upstream Zephyr RTOS codebase.</p>
 
-      <h2>Contributions Behind The Badge</h2>
-      <p>The contributions covered by this recognition include driver additions for TI MSPM0 peripherals (SPI, DAC, MCAN), and work on the USB host subsystem to add CDC ECM class support. Each contribution went through Zephyr's standard review process, including devicetree bindings, Kconfig integration, documentation and test validation.</p>
-
-      <h2>Why Upstream?</h2>
-      <p>Landing work upstream rather than keeping it as out-of-tree patches means the code benefits from the project's CI, static analysis, and broad community review, and it keeps future rebases cheap. It is also the most honest test of a driver: if it holds up to review from the Zephyr maintainers, it is probably solid.</p>
-
-      <h2>Links</h2>
-      <p>Individual pull requests are listed on the <a href="/projects">Projects</a> page. The badge itself is available via the Credly link below.</p>
-    `,
-    links: {
-      credly: "#",
-    },
-  },
-  {
-    slug: "lfd103-linux-kernel",
-    title: "LFD103: A Beginner's Guide to Linux Kernel Development",
-    issuer: "The Linux Foundation",
-    date: "2026",
-    tags: ["LINUX KERNEL", "LINUX FOUNDATION", "C"],
-    description:
-      "Linux Foundation course introducing the fundamentals of Linux kernel development: kernel source layout, build system, patch workflow, coding style, and the upstream contribution process.",
-    excerpt:
-      "Linux Foundation LFD103 course on the basics of Linux kernel development and upstream contribution.",
-    badge: "/certs/lfd103-linux-kernel.png",
-    CertIcon: Terminal,
-    content: `
-      <p><strong>LFD103: A Beginner's Guide to Linux Kernel Development</strong> is a Linux Foundation course that introduces the fundamentals of getting started with the Linux kernel, from cloning the tree to sending a first patch upstream.</p>
-
-      <h2>Topics Covered</h2>
-      <p>The course walks through the kernel source layout, the kbuild and Kconfig build systems, the patch workflow using git send-email, the kernel coding style and checkpatch tooling, and the social conventions of the LKML and subsystem maintainer trees. It also covers the basics of configuring and building a kernel for a local machine or emulator and testing changes there.</p>
-
-      <h2>Why It Matters</h2>
-      <p>Most embedded Linux work eventually touches the kernel, whether that is writing a new device driver, fixing a bug in an existing subsystem, or simply making sense of what a board vendor's BSP actually does. Knowing how the upstream process works, even for small patches, makes the out-of-tree vs in-tree tradeoff a real decision rather than a default.</p>
-
-      <h2>Outcome</h2>
-      <p>Completion earned the Linux Foundation LFD103 certificate. The credential is available via the link below.</p>
-    `,
-    links: {
-      credly: "#",
-      credential: "#",
-    },
-  },
-  {
-    slug: "lfd110-riscv",
-    title: "LFD110: Introduction to RISC-V",
-    issuer: "The Linux Foundation",
-    date: "2026",
-    tags: ["RISC-V", "ISA", "LINUX FOUNDATION"],
-    description:
-      "Linux Foundation course covering the RISC-V instruction set architecture: base integer ISA, standard extensions, privilege levels, memory model, and the open ecosystem around RISC-V.",
-    excerpt:
-      "Linux Foundation LFD110 course on the RISC-V ISA, extensions, privilege model and ecosystem.",
-    badge: "/certs/lfd110-riscv.png",
-    CertIcon: Cpu,
-    content: `
-      <p><strong>LFD110: Introduction to RISC-V</strong> is a Linux Foundation course that covers the RISC-V instruction set architecture end to end. RISC-V is a free and open ISA that has been picking up serious traction across embedded, automotive and HPC.</p>
-
-      <h2>Topics Covered</h2>
-      <p>The course walks through the base integer ISA (RV32I / RV64I), standard extensions (M, A, F, D, C, V), privilege levels (M, S, U), the memory and atomics model, and the overall ecosystem of cores, toolchains and organisations around RISC-V.</p>
-
-      <h2>Why It Matters For Embedded Work</h2>
-      <p>RISC-V is increasingly showing up in microcontroller silicon, and getting the fundamentals right at the ISA level makes it much easier to reason about what a Zephyr or bare-metal port is actually doing under the hood. Understanding the privilege model and trap handling in particular is directly useful when wiring up exception vectors and context-switch code.</p>
-
-      <h2>Outcome</h2>
-      <p>Completion earned the Linux Foundation LFD110 certificate. The credential itself is available via the Credly link below.</p>
-    `,
-    links: {
-      credly: "#",
-      credential: "#",
-    },
-  },
+  // ─── 5. Edge AI Course ───────────────────────────────────────────────────
   {
     slug: "edge-ai-course",
     title: "Edge AI Course",
@@ -172,6 +198,7 @@ export const certifications: Certification[] = [
       <p>The certificate is available via the link below.</p>
     `,
     links: {
+      // 🔗 Replace "#" with your credential/certificate URL
       credential: "#",
     },
   },

@@ -51,7 +51,7 @@ export default function CertificationsListingPage() {
 
         <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-10">
           <div
-            className="flex items-center gap-2 rounded-lg px-3 py-2 flex-1 max-w-md"
+            className="flex items-center gap-2 rounded-lg px-3 py-2 flex-1 min-w-[250px] max-w-md"
             style={{
               ...GLASS,
               background: "rgba(255,255,255,0.03)",
@@ -63,7 +63,7 @@ export default function CertificationsListingPage() {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search badges..."
+              placeholder="Search Badges"
               className="bg-transparent outline-none text-sm text-gray-300 placeholder-gray-600 w-full"
             />
           </div>

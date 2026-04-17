@@ -64,7 +64,7 @@ export default function ProjectsPage() {
           <input
             ref={inputRef}
             type="text"
-            placeholder="Search projects..."
+            placeholder="Search Projects"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="w-full pl-12 pr-10 py-2.5 rounded-lg text-sm text-gray-200 placeholder-gray-600 focus:outline-none transition-all duration-200"

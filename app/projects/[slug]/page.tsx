@@ -48,7 +48,8 @@ export default async function ProjectPage({
 
   return (
     <div className="min-h-screen pt-24 pb-16">
-      <article className="max-w-3xl mx-auto px-4 sm:px-6">
+      {/* ── Widened from max-w-3xl → max-w-5xl for ~70 % desktop fill ── */}
+      <article className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Back link */}
         <Link
@@ -71,7 +72,7 @@ export default async function ProjectPage({
             ))}
           </div>
 
-          {/* Title */}
+          {/* Title — keep large, no size change per spec */}
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6 uppercase tracking-tight">
             {project.title}
           </h1>
@@ -99,10 +100,12 @@ export default async function ProjectPage({
           </div>
         </header>
 
-        {/* Project content — no "use client" needed, pure HTML render */}
+        {/* Project content
+            Para font bumped +1: text-sm sm:text-base → text-base sm:text-lg
+            H2 section titles intentionally unchanged per spec             */}
         <div
           className="
-            text-gray-400 leading-relaxed text-sm sm:text-base pb-8
+            text-gray-400 leading-relaxed text-base sm:text-lg pb-8
             [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-white
             [&_h2]:mt-10 [&_h2]:mb-3 [&_h2]:pb-2
             [&_h2]:uppercase [&_h2]:tracking-wide
@@ -121,7 +124,7 @@ export default async function ProjectPage({
           dangerouslySetInnerHTML={{ __html: project.content }}
         />
 
-        {/* Prev / Next — CSS nav-card class handles hover, no JS handlers */}
+        {/* Prev / Next */}
         <nav className="mt-12 grid sm:grid-cols-2 gap-4">
           {prevProject ? (
             <Link
