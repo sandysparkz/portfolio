@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Calendar, ExternalLink, Search, ArrowLeft } from "lucide-react";
+import { Calendar, ExternalLink, Search, ArrowLeft, X } from "lucide-react";
 import { GLASS } from "@/components/glassConfig";
 import { certifications, allCertTags } from "@/lib/certData";
 import { asset } from "@/lib/paths";
@@ -11,6 +11,19 @@ import { asset } from "@/lib/paths";
 export default function CertificationsListingPage() {
   const [query, setQuery] = useState("");
   const [activeTag, setActiveTag] = useState<string | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  /* ESC clears + blurs the search bar */
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && document.activeElement === inputRef.current) {
+        setQuery("");
+        inputRef.current?.blur();
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
 
   const filtered = useMemo(() => {
     return certifications.filter((c) => {
@@ -51,7 +64,7 @@ export default function CertificationsListingPage() {
 
         <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-10">
           <div
-            className="flex items-center gap-2 rounded-lg px-3 py-2 flex-1 min-w-[250px] max-w-md"
+            className="flex items-center gap-2 rounded-lg px-3 py-2 flex-1 min-w-[250px] max-w-md relative"
             style={{
               ...GLASS,
               background: "rgba(255,255,255,0.03)",
@@ -60,12 +73,22 @@ export default function CertificationsListingPage() {
           >
             <Search className="w-4 h-4 text-gray-500" />
             <input
+              ref={inputRef}
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search Badges"
               className="bg-transparent outline-none text-sm text-gray-300 placeholder-gray-600 w-full"
             />
+            {query && (
+              <button
+                onClick={() => { setQuery(""); inputRef.current?.focus(); }}
+                className="p-1 rounded text-gray-500 hover:text-gray-200 transition-colors"
+                aria-label="Clear search"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
           </div>
 
           <div className="flex flex-wrap gap-1.5">
